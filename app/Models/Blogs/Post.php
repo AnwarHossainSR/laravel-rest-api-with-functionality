@@ -14,7 +14,7 @@ class Post extends BaseModel
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['categoryId', 'slug', 'title', 'body', 'imagePath', 'thumbnailPath', 'publishedAt'];
+    protected $fillable = ['categoryId', 'slug', 'title', 'body', 'imagePath', 'thumbnailPath', 'publishedAt', 'user_id', 'created_by', 'updated_by', 'deleted_by'];
 
     /**
      * The "booted" method of the model.
@@ -25,7 +25,7 @@ class Post extends BaseModel
     {
         //static::addGlobalScope(new CurrentAccountScope);
 
-        static::creating(function ($model) { 
+        static::creating(function ($model) {
             $model->user_id = Auth::id() ?? CmnEnum::ONE;
             $model->created_by = Auth::id() ?? CmnEnum::ONE;
         });
@@ -53,5 +53,4 @@ class Post extends BaseModel
     {
         return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id')->latest();
     }
-    
 }
