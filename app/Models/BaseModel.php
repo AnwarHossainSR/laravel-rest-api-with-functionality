@@ -12,5 +12,5 @@ use App\Traits\Common\AllowCamelCase;
 class BaseModel extends Model
 {
     use AllowCamelCase;
-    
+
 }

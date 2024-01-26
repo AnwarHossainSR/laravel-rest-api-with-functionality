@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services\Samples;
 
@@ -11,7 +11,7 @@ use App\Repositories\Samples\SampleRepository;
 use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Http\Response;
 
-class SampleService 
+class SampleService
 {
     use RespondsWithHttpStatus;
     /**
@@ -20,8 +20,8 @@ class SampleService
     protected $sampleRepository;
 
     /**
-     * SampleService constructor. 
-     * 
+     * SampleService constructor.
+     *
      * @param SampleRepository $sampleRepository
      */
 
@@ -32,7 +32,7 @@ class SampleService
 
     public function getAll($request)
     {
-        return $this->success('',  new SampleCollection($this->sampleRepository->getAll($request)));
+        return $this->success('', new SampleCollection($this->sampleRepository->getAll($request)));
     }
 
     public function list($request)
@@ -70,10 +70,10 @@ class SampleService
         if($result) {
             return $this->success(__('messages.crud.stored'), new SampleResource($result), Response::HTTP_CREATED);
         }
-        return $this->failure( __('messages.crud.storeFailed'));
+        return $this->failure(__('messages.crud.storeFailed'));
     }
 
-     
+
     /**
      * Update sample data
      * Store to DB if there are no errors.
@@ -86,10 +86,10 @@ class SampleService
         $result = $this->sampleRepository->update($request, $sample);
         if($result) {
             return $this->success(__('messages.crud.updated'), new SampleResource($result));
-        }  
+        }
         return $this->failure(__('messages.crud.updateFailed'));
     }
- 
+
     /**
      * Delete sample by id.
      *

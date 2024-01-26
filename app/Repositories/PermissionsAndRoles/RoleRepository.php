@@ -1,23 +1,23 @@
-<?php 
+<?php
 
 namespace App\Repositories\PermissionsAndRoles;
 
 use App\Models\PermissionsAndRoles\Role;
 
-class RoleRepository 
+class RoleRepository
 {
-    /** 
+    /**
      * @var Role
      */
     protected $role;
 
-    /** 
+    /**
      * RoleRepository constructor.
-     * 
-     * @param Role $post 
+     *
+     * @param Role $post
      */
 
-    function __construct(Role $role)
+    public function __construct(Role $role)
     {
         $this->role = $role;
     }
@@ -25,20 +25,20 @@ class RoleRepository
     public function getAll($request)
     {
         return $this->role
-        ->when($request->searchText, function($q) use ($request) {
-            return $q->where(function($q) use ($request) {
+        ->when($request->searchText, function ($q) use ($request) {
+            return $q->where(function ($q) use ($request) {
                 $q->where('title', 'like', '%' . $request->searchText . '%')
                 ->orWhere('display_title', 'like', '%' . $request->searchText . '%');
             });
-        })   
-        ->when($request->startDate, function($q) use ($request) {
+        })
+        ->when($request->startDate, function ($q) use ($request) {
             return $q->where('created_at', '>=', $request->startDate);
         })
-        ->when($request->endDate, function($q) use ($request) {
+        ->when($request->endDate, function ($q) use ($request) {
             return $q->where('created_at', '<=', $request->endDate);
         })
         ->get();
-    } 
+    }
 
     public function get($role)
     {

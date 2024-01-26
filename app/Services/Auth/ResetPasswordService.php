@@ -2,14 +2,14 @@
 
 namespace App\Services\Auth;
 
-use App\Enums\CmnEnum; 
+use App\Enums\CmnEnum;
 use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 
-class ResetPasswordService 
+class ResetPasswordService
 {
     use RespondsWithHttpStatus;
 
@@ -21,13 +21,13 @@ class ResetPasswordService
                 $user->forceFill([
                     'password' => Hash::make($password)
                 ])->setRememberToken(Str::random(60));
-    
+
                 $user->save();
-    
+
                 event(new PasswordReset($user));
             }
         );
-    
+
         return $status === Password::PASSWORD_RESET
                     ? $this->success(__($status))
                     : $this->failure(['email' => __($status)]);

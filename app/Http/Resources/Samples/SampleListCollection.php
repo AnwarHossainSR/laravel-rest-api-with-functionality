@@ -16,7 +16,7 @@ class SampleListCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => SampleListResource::collection($this->collection) 
+            'data' => SampleListResource::collection($this->collection)
         ];
     }
 }

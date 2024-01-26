@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->group(function() {
+Route::prefix('v1')->group(function () {
     Route::post('register', [\App\Http\Controllers\Api\Auth\RegisterController::class, 'register']);
     Route::post('forgot-password', [\App\Http\Controllers\Api\Auth\ForgotPasswordController::class, 'forgotPassword'])->name('password.forgot');
     Route::post('reset-password', [\App\Http\Controllers\Api\Auth\ResetPasswordController::class, 'resetPassword'])->name('password.reset');
@@ -26,7 +26,7 @@ Route::prefix('v1')->group(function() {
 
     Route::get('/notifications/email', [\App\Http\Controllers\Api\Notifications\EmailNotificationController::class, 'notify']);
 
-    Route::middleware(['auth:api', \App\Http\Middleware\AuthGates::class])->group( function () {
+    Route::middleware(['auth:api', \App\Http\Middleware\AuthGates::class])->group(function () {
         Route::post('update-profile', [\App\Http\Controllers\Api\Profile\ProfileController::class, 'update']);
         Route::post('change-password', [\App\Http\Controllers\Api\Profile\ChangePasswordController::class, 'update']);
         Route::post('logout', [\App\Http\Controllers\Api\Auth\LoginController::class, 'logout']);
@@ -46,4 +46,3 @@ Route::prefix('v1')->group(function() {
     });
 
 });
-

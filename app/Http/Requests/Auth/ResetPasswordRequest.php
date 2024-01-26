@@ -24,13 +24,13 @@ class ResetPasswordRequest extends FormRequest
      * @return array
      */
     public function rules()
-    { 
+    {
         return [
             'token' => 'required',
             'email' => ['required', 'email', 'max:' . CmnEnum::DEFAULT_EMAIL_CHAR_MAX],
             'password' => [
-                'required', 
-                //'confirmed', 
+                'required',
+                //'confirmed',
                 'required_with:passwordConfirmation',
                 'same:passwordConfirmation',
                 Password::min(CmnEnum::PASSWORD_MIN_LENGTH)

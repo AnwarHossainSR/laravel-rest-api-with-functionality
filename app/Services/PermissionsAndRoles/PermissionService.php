@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services\PermissionsAndRoles;
 
@@ -9,7 +9,7 @@ use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 
-class PermissionService 
+class PermissionService
 {
     use RespondsWithHttpStatus;
     /**
@@ -18,8 +18,8 @@ class PermissionService
     protected $permissionRepository;
 
     /**
-     * permissionService constructor. 
-     * 
+     * permissionService constructor.
+     *
      * @param PermissionRepository $permissionRepository
      */
 
@@ -30,8 +30,8 @@ class PermissionService
 
     public function getAll($request)
     {
-        return $this->success('',  new PermissionCollection($this->permissionRepository->getAll($request)));
-    } 
+        return $this->success('', new PermissionCollection($this->permissionRepository->getAll($request)));
+    }
 
     /**
      * Get permission by id.
@@ -60,10 +60,10 @@ class PermissionService
         if($result) {
             return $this->success(__('messages.crud.stored'), new PermissionResource($result), Response::HTTP_CREATED);
         }
-        return $this->failure( __('messages.crud.storeFailed'));
+        return $this->failure(__('messages.crud.storeFailed'));
     }
 
-     
+
     /**
      * Update permission data
      * Store to DB if there are no errors.
@@ -79,10 +79,10 @@ class PermissionService
         $result = $this->permissionRepository->update($request, $permission);
         if($result) {
             return $this->success(__('messages.crud.updated'), new PermissionResource($result));
-        }  
+        }
         return $this->failure(__('messages.crud.updateFailed'));
     }
- 
+
     /**
      * Delete permission by id.
      *
@@ -93,7 +93,7 @@ class PermissionService
     {
         $result = $this->permissionRepository->destroy($permission);
         if($result) {
-            return $this->success(__('messages.crud.deleted')); 
+            return $this->success(__('messages.crud.deleted'));
         }
         return $this->failure(__('messages.crud.deleteFailed'));
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Api\BaseController; 
+use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Services\Auth\LoginService;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class LoginController extends BaseController
     public function __construct(LoginService $loginService)
     {
         $this->loginService = $loginService;
-    } 
+    }
 
     /**
      * @OA\Post(
@@ -93,8 +93,8 @@ class LoginController extends BaseController
      *      tags={"Auth"},
      *      summary="Logout",
      *      operationId="logout",
-     *      security={{"bearerAuth":{}}}, 
-     * 
+     *      security={{"bearerAuth":{}}},
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Success",
@@ -113,13 +113,13 @@ class LoginController extends BaseController
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
-     *      ), 
+     *      ),
      * )
      **/
     public function logout(Request $request)
     {
         return $this->loginService->logout($request);
-    } 
-     
+    }
+
 
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Exceptions\Custom;
 
@@ -20,8 +20,8 @@ class NotFoundHttpException
     }
 
     public function render()
-    { 
+    {
         return $this->failure(__('messages.notFoundUrl'), Response::HTTP_BAD_REQUEST);
     }
 
-} 
+}

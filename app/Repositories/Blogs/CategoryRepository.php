@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Blogs;
 
@@ -7,18 +7,18 @@ use Illuminate\Support\Str;
 
 class CategoryRepository
 {
-    /** 
+    /**
      * @var Category
      */
     protected $category;
 
-    /** 
+    /**
      * LoginRepository constructor.
-     * 
-     * @param Category $category 
+     *
+     * @param Category $category
      */
 
-    function __construct(Category $category)
+    public function __construct(Category $category)
     {
         $this->category = $category;
     }
@@ -26,21 +26,21 @@ class CategoryRepository
     public function getAll($request)
     {
         return $this->category
-        ->when($request->searchText, function($q) use ($request) {
-            return $q->where(function($q) use ($request) {
+        ->when($request->searchText, function ($q) use ($request) {
+            return $q->where(function ($q) use ($request) {
                 $q->where('title', 'like', '%' . $request->searchText . '%')
                 ->orWhere('slug', 'like', '%' . $request->searchText . '%');
             });
-        }) 
-        ->when($request->start_date, function($q) use ($request) {
+        })
+        ->when($request->start_date, function ($q) use ($request) {
             return $q->where('created_at', '>=', $request->start_date);
         })
-        ->when($request->end_date, function($q) use ($request) {
+        ->when($request->end_date, function ($q) use ($request) {
             return $q->where('created_at', '<=', $request->end_date);
         })
         ->latest()
         ->paginate(config('constants.paginate'));
-    } 
+    }
 
     public function get($category)
     {

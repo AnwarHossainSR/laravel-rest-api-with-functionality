@@ -31,11 +31,11 @@ class PostUpdateRequest extends FormRequest
                 'exists:' . config('constants.table.categories') . ',id'
             ],
             'title' => [
-                'required', 
+                'required',
                 'string',
                 'unique:' . config('constants.table.posts') . ',title,'. $this->post->id,
                 'max:' . CmnEnum::DEFAULT_TITLE_CHAR_MAX
-            ], 
+            ],
         ];
     }
 }

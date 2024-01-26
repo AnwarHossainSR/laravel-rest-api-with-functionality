@@ -1,15 +1,15 @@
-<?php 
+<?php
 
 namespace App\Services\Blogs;
 
 use App\Http\Resources\Blogs\CommentCollection;
 use App\Http\Resources\Blogs\CommentResource;
 use App\Http\Resources\Blogs\PostResource;
-use App\Repositories\Blogs\CommentRepository; 
+use App\Repositories\Blogs\CommentRepository;
 use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Http\Response;
 
-class CommentService 
+class CommentService
 {
     use RespondsWithHttpStatus;
     /**
@@ -18,8 +18,8 @@ class CommentService
     protected $commentRepository;
 
     /**
-     * CommentService constructor. 
-     * 
+     * CommentService constructor.
+     *
      * @param CommentRepository $commentRepository
      */
 
@@ -30,7 +30,7 @@ class CommentService
 
     public function getAll($request)
     {
-        return $this->success('',  new CommentCollection($this->commentRepository->getAll($request)));
+        return $this->success('', new CommentCollection($this->commentRepository->getAll($request)));
     }
 
     public function list($request)
@@ -62,7 +62,7 @@ class CommentService
         if($result) {
             return $this->success(__('messages.crud.stored'), new PostResource($result), Response::HTTP_CREATED);
         }
-        return $this->failure( __('messages.crud.storeFailed'));
+        return $this->failure(__('messages.crud.storeFailed'));
     }
 
     public function storeReply($request, $post)
@@ -71,10 +71,10 @@ class CommentService
         if($result) {
             return $this->success(__('messages.crud.stored'), new PostResource($result), Response::HTTP_CREATED);
         }
-        return $this->failure( __('messages.crud.storeFailed'));
+        return $this->failure(__('messages.crud.storeFailed'));
     }
 
-     
+
     /**
      * Update comment data
      * Store to DB if there are no errors.
@@ -87,10 +87,10 @@ class CommentService
         $result = $this->commentRepository->update($request, $comment);
         if($result) {
             return $this->success(__('messages.crud.updated'), new CommentResource($result));
-        }  
+        }
         return $this->failure(__('messages.crud.updateFailed'));
     }
- 
+
     /**
      * Delete comment by id.
      *

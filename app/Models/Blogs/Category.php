@@ -9,7 +9,8 @@ use App\Models\BaseModel;
 
 class Category extends BaseModel
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = ['title', 'slug'];
 }

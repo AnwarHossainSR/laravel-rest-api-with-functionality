@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 return [
     'paginate' => 10,
@@ -16,7 +17,7 @@ return [
         'storage' => 'storage',
         'storage_app' => 'app',
         'storage_public' => 'public',
-        'storage_app_public' => 'app/public', 
+        'storage_app_public' => 'app/public',
         'posts' => [
             'normals' => 'files/posts/normals',
             'thumbnails' => 'files/posts/thumbnails'

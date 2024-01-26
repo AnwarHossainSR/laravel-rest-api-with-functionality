@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Profile;
 
@@ -7,18 +7,18 @@ use Illuminate\Support\Str;
 
 class ProfileRepository
 {
-    /** 
+    /**
      * @var User
      */
     protected $user;
 
-    /** 
+    /**
      * LoginRepository constructor.
-     * 
-     * @param User $user 
+     *
+     * @param User $user
      */
 
-    function __construct(User $user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }

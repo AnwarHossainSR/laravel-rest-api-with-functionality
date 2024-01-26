@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Exceptions\Custom;
 
@@ -20,7 +20,7 @@ class NotDefinedException
     }
 
     public function render()
-    { 
+    {
         $response['message'] = $this->exception->getMessage();
         if (config('app.debug')) {
             $response['trace'] = $this->exception->getTrace();
@@ -29,4 +29,4 @@ class NotDefinedException
         return $this->failure($response, Response::HTTP_GONE);
     }
 
-} 
+}

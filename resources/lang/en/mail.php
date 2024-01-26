@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'regards' => 'Thank you', 
+    'regards' => 'Thank you',
     'resetPasswordLink' => [
         'subject' => config('app.name') . ' - Reset Password Link',
     ],

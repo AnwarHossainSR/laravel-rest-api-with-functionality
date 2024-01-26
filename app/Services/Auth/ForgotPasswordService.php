@@ -2,11 +2,11 @@
 
 namespace App\Services\Auth;
 
-use App\Enums\CmnEnum; 
-use App\Traits\Common\RespondsWithHttpStatus; 
+use App\Enums\CmnEnum;
+use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Support\Facades\Password;
 
-class ForgotPasswordService 
+class ForgotPasswordService
 {
     use RespondsWithHttpStatus;
 

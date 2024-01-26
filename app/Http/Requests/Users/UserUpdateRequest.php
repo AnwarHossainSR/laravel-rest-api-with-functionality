@@ -30,15 +30,15 @@ class UserUpdateRequest extends FormRequest
         return [
             'name' => ['nullable', 'min:' . CmnEnum::DEFAULT_CHAR_MIN, 'max:'. CmnEnum::DEFAULT_TITLE_CHAR_MAX],
             'email' => [
-                'nullable', 
-                'email', 
+                'nullable',
+                'email',
                 'unique:' . config('constants.table.users') . ',email,' . $this->user->id,
                 'max:' . CmnEnum::DEFAULT_EMAIL_CHAR_MAX,
                 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'
             ],
             'password' => [
-                'nullable', 
-                //'confirmed', 
+                'nullable',
+                //'confirmed',
                 'required_with:passwordConfirmation',
                 'same:passwordConfirmation',
                 Password::min(CmnEnum::PASSWORD_MIN_LENGTH)

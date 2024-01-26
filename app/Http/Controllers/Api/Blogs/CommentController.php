@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     /**
-     * @var $commentService 
+     * @var $commentService
      */
     protected $commentService;
 
@@ -40,7 +40,7 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Post(
      *      path="/posts/{slug}/comments",
@@ -48,18 +48,18 @@ class CommentController extends Controller
      *      tags={"Blogs"},
      *      summary="Store Comment",
      *      security={{"bearerAuth": {}}},
-     * 
+     *
      *      @OA\Parameter(
      *          name="slug",
      *          description="Pass Post Slug",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
-     *              type="string" 
+     *              type="string"
      *          )
      *      ),
-     * 
-     *      @OA\RequestBody( 
+     *
+     *      @OA\RequestBody(
      *          required=true,
      *          description = "Store Comment",
      *          @OA\JsonContent(
@@ -74,8 +74,8 @@ class CommentController extends Controller
      *                  type="string"
      *              ),
      *          ),
-     *      ),     
-     *  
+     *      ),
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Success",
@@ -110,7 +110,7 @@ class CommentController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -128,7 +128,7 @@ class CommentController extends Controller
      *                          type="string",
      *                          example="The title field is required.",
      *                      )
-     *                  ), 
+     *                  ),
      *              )
      *          )
      *      ),
@@ -146,18 +146,18 @@ class CommentController extends Controller
      *      tags={"Blogs"},
      *      summary="Store Comment Reply",
      *      security={{"bearerAuth": {}}},
-     * 
+     *
      *      @OA\Parameter(
      *          name="slug",
      *          description="Pass Post Slug",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
-     *              type="string" 
+     *              type="string"
      *          )
      *      ),
-     * 
-     *      @OA\RequestBody( 
+     *
+     *      @OA\RequestBody(
      *          required=true,
      *          description = "Store Comment Reply",
      *          @OA\JsonContent(
@@ -178,8 +178,8 @@ class CommentController extends Controller
      *                  type="string"
      *              ),
      *          ),
-     *      ),     
-     *  
+     *      ),
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Success",
@@ -214,7 +214,7 @@ class CommentController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -232,7 +232,7 @@ class CommentController extends Controller
      *                          type="string",
      *                          example="The title field is required.",
      *                      )
-     *                  ), 
+     *                  ),
      *              )
      *          )
      *      ),
@@ -279,5 +279,5 @@ class CommentController extends Controller
         return $this->commentService->destroy($comment);
     }
 
- 
+
 }

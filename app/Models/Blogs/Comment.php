@@ -10,7 +10,8 @@ use App\Models\BaseModel;
 
 class Comment extends BaseModel
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'postId', 'userId', 'parentId', 'comment', 'commentableId', 'commentableType'
@@ -21,7 +22,7 @@ class Comment extends BaseModel
     {
         return $this->belongsTo(Post::class);
     }
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -35,7 +35,7 @@ class NotMatchCurrentPassword implements Rule
      * @return string
      */
     public function message()
-    { 
+    {
         return __('messages.notMatchCurrentPassword');
     }
 }

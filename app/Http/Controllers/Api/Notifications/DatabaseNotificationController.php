@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class DatabaseNotificationController extends Controller
 {
     protected $databaseNotificationService;
-    
+
     public function __construct(DatabaseNotificationService $databaseNotificationService)
     {
         $this->databaseNotificationService = $databaseNotificationService;
@@ -17,12 +17,12 @@ class DatabaseNotificationController extends Controller
 
     public function index(Request $request)
     {
-        return $this->databaseNotificationService->index($request); 
+        return $this->databaseNotificationService->index($request);
     }
 
     public function markNotification(Request $request)
     {
-        return $this->databaseNotificationService->markNotification($request); 
+        return $this->databaseNotificationService->markNotification($request);
     }
 
     /**
@@ -31,7 +31,7 @@ class DatabaseNotificationController extends Controller
      *      operationId="sendDatabaseNotification",
      *      tags={"Notifications"},
      *      summary="Send Database Notification",
-     *      description="Send Database Notification", 
+     *      description="Send Database Notification",
      *
      *      @OA\Response(
      *          response=200,
@@ -55,7 +55,7 @@ class DatabaseNotificationController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function notify(Request $request)
@@ -63,6 +63,6 @@ class DatabaseNotificationController extends Controller
         return $this->databaseNotificationService->notify($request);
     }
 
-    
+
 
 }

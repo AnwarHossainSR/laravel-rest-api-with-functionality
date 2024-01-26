@@ -25,17 +25,17 @@ class RoleUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [ 
+        return [
             'displayTitle' => [
-                'nullable', 
+                'nullable',
                 'string',
-                Rule::unique(config('constants.table.roles'), 'display_title')->ignore($this->role)->whereNull('deleted_at') 
+                Rule::unique(config('constants.table.roles'), 'display_title')->ignore($this->role)->whereNull('deleted_at')
             ],
             'permissions' => [
                 'nullable',
                 'array',
                 'exists:'. config('constants.table.permissions') . ',id'
-            ] 
+            ]
         ];
     }
 }

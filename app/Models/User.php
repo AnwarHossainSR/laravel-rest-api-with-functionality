@@ -16,7 +16,9 @@ use App\Traits\Blogs\CustomBlog;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
     use AllowCamelCase;
     use CustomJwtToken;
     use CustomPermission;

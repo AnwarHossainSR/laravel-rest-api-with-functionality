@@ -10,7 +10,8 @@ use App\Models\BaseModel;
 
 class Role extends BaseModel
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'title',

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services\PermissionsAndRoles;
 
@@ -9,7 +9,7 @@ use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 
-class RoleService 
+class RoleService
 {
     use RespondsWithHttpStatus;
     /**
@@ -18,8 +18,8 @@ class RoleService
     protected $roleRepository;
 
     /**
-     * roleService constructor. 
-     * 
+     * roleService constructor.
+     *
      * @param RoleRepository $roleRepository
      */
 
@@ -30,8 +30,8 @@ class RoleService
 
     public function getAll($request)
     {
-        return $this->success('',  new RoleCollection($this->roleRepository->getAll($request)));
-    } 
+        return $this->success('', new RoleCollection($this->roleRepository->getAll($request)));
+    }
 
     /**
      * Get role by id.
@@ -60,7 +60,7 @@ class RoleService
         if($result) {
             return $this->success(__('messages.crud.stored'), new RoleResource($result), Response::HTTP_CREATED);
         }
-        return $this->failure( __('messages.crud.storeFailed'));
+        return $this->failure(__('messages.crud.storeFailed'));
     }
 
     /**
@@ -78,10 +78,10 @@ class RoleService
         $result = $this->roleRepository->update($request, $role);
         if($result) {
             return $this->success(__('messages.crud.updated'), new RoleResource($result));
-        }  
+        }
         return $this->failure(__('messages.crud.updateFailed'));
     }
- 
+
     /**
      * Delete role by id.
      *

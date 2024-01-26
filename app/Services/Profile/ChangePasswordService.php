@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace App\Services\Profile;
 
 use App\Enums\CmnEnum;
 use App\Http\Resources\Profile\ProfileResource;
-use App\Repositories\Profile\ChangePasswordRepository; 
+use App\Repositories\Profile\ChangePasswordRepository;
 use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
-class ChangePasswordService 
+class ChangePasswordService
 {
     use RespondsWithHttpStatus;
     /**
@@ -22,8 +22,8 @@ class ChangePasswordService
     protected $changePasswordRepository;
 
     /**
-     * ChangePasswordService constructor. 
-     * 
+     * ChangePasswordService constructor.
+     *
      * @param ChangePasswordRepository $changePasswordRepository
      */
 
@@ -31,7 +31,7 @@ class ChangePasswordService
     {
         $this->changePasswordRepository = $changePasswordRepository;
     }
-     
+
     /**
      * Update post data
      * Store to DB if there are no errors.
@@ -46,10 +46,10 @@ class ChangePasswordService
             'password' => Hash::make($request->newPassword)
         ]);
         $result = $this->changePasswordRepository->update($request, $user);
-        if($result) { 
+        if($result) {
             return $this->success(__('messages.crud.updated'));
-        }  
+        }
         return $this->failure(__('messages.crud.updateFailed'));
     }
- 
+
 }

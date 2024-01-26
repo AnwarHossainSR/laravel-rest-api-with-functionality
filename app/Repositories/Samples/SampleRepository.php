@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Samples;
 
@@ -6,18 +6,18 @@ use App\Models\Samples\Sample;
 
 class SampleRepository
 {
-    /** 
+    /**
      * @var Sample
      */
     protected $sample;
 
-    /** 
+    /**
      * LoginRepository constructor.
-     * 
-     * @param Sample $post 
+     *
+     * @param Sample $post
      */
 
-    function __construct(Sample $sample)
+    public function __construct(Sample $sample)
     {
         $this->sample = $sample;
     }
@@ -25,27 +25,27 @@ class SampleRepository
     public function getAll($request)
     {
         return $this->sample
-        ->when($request->searchText, function($q) use ($request) {
-            return $q->where(function($q) use ($request) {
+        ->when($request->searchText, function ($q) use ($request) {
+            return $q->where(function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->searchText . '%')
                 ->orWhere('detail', 'like', '%' . $request->searchText . '%');
             });
-        })   
-        ->when($request->startDate, function($q) use ($request) {
+        })
+        ->when($request->startDate, function ($q) use ($request) {
             return $q->where('created_at', '>=', $request->startDate);
         })
-        ->when($request->endDate, function($q) use ($request) {
+        ->when($request->endDate, function ($q) use ($request) {
             return $q->where('created_at', '<=', $request->endDate);
         })
         ->latest()
         ->paginate(config('constants.paginate'));
     }
 
-    public function list($request) 
+    public function list($request)
     {
         return $this->sample
-        ->when($request->searchText, function($q) use ($request) {
-            return $q->where(function($q) use ($request) {
+        ->when($request->searchText, function ($q) use ($request) {
+            return $q->where(function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->searchText . '%')
                 ->orWhere('detail', 'like', '%' . $request->searchText . '%');
             });

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Exceptions\Custom;
 
@@ -20,8 +20,8 @@ class SesException
     }
 
     public function render()
-    { 
+    {
         return $this->failure($this->exception->getAwsErrorMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
-} 
+}

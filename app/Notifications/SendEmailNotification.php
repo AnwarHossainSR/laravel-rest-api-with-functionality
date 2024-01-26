@@ -42,16 +42,16 @@ class SendEmailNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application - Email!');
-        
-                    // ->subject(Lang::get('mail.resetPassword.subject'))
-                    // ->line(Lang::get('mail.resetPassword.line1'))
-                    // ->action(Lang::get('mail.resetPassword.actionText'), $url)
-                    // ->line(Lang::get('mail.resetPassword.line2', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
-                    // ->line(Lang::get('mail.resetPassword.line3'));
+
+        // ->subject(Lang::get('mail.resetPassword.subject'))
+        // ->line(Lang::get('mail.resetPassword.line1'))
+        // ->action(Lang::get('mail.resetPassword.actionText'), $url)
+        // ->line(Lang::get('mail.resetPassword.line2', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
+        // ->line(Lang::get('mail.resetPassword.line3'));
     }
 
     /**

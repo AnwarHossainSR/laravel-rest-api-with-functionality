@@ -3,7 +3,7 @@
 namespace App\Services\Auth;
 
 use App\Enums\CmnEnum;
-use App\Http\Resources\Auth\LoginResource; 
+use App\Http\Resources\Auth\LoginResource;
 use App\Http\Resources\Auth\UserResource;
 use App\Repositories\Auth\RegisterRepository;
 use App\Traits\Common\RespondsWithHttpStatus;
@@ -11,7 +11,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterService 
+class RegisterService
 {
     use RespondsWithHttpStatus;
     /**
@@ -20,8 +20,8 @@ class RegisterService
     protected $registerRepository;
 
     /**
-     * RegisterService constructor. 
-     * 
+     * RegisterService constructor.
+     *
      * @param RegisterRepository $registerRepository
      */
 
@@ -36,11 +36,11 @@ class RegisterService
             'password' => Hash::make($request->password)
         ]);
         $user = $this->registerRepository->create($request);
-        if($user) { 
+        if($user) {
             $result = [
                 'tokenType' => CmnEnum::TOKEN_TYPE,
                 'token' => auth('api')->login($user),
-                
+
                 'user' => new UserResource($user)
             ];
             return $this->success(__('messages.registered'), new LoginResource($result), Response::HTTP_CREATED);

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Exceptions\Custom;
 
@@ -20,8 +20,8 @@ class MethodNotAllowedHttpException
     }
 
     public function render()
-    { 
+    {
         return $this->failure(__('messages.notAllowedHTTPMethod'), Response::HTTP_METHOD_NOT_ALLOWED);
     }
 
-} 
+}

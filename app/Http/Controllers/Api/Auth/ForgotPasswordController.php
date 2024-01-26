@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Api\BaseController;  
-use App\Services\Auth\ForgotPasswordService; 
+use App\Http\Controllers\Api\BaseController;
+use App\Services\Auth\ForgotPasswordService;
 use Illuminate\Http\Request;
 
 class ForgotPasswordController extends BaseController
 {
-
     /**
      * @var $forgotPasswordService
      */
     protected $forgotPasswordService;
 
     /**
-     * ForgotPasswordController constructor. 
-     * 
+     * ForgotPasswordController constructor.
+     *
      * @param ForgotPasswordService $forgotPasswordService
      */
     public function __construct(ForgotPasswordService $forgotPasswordService)
@@ -43,14 +42,14 @@ class ForgotPasswordController extends BaseController
      *          @OA\Schema(
      *              type="string"
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Success",
      *          @OA\MediaType(
      *              mediaType="application/json",
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
@@ -62,13 +61,13 @@ class ForgotPasswordController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="We can't find a user with that email address."),
      *          )
-     *      ), 
+     *      ),
      * )
      **/
     public function forgotPassword(Request $request)
     {
         return $this->forgotPasswordService->forgotPassword($request);
-    } 
-     
+    }
+
 
 }

@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Api\PermissionsAndRoles;
 
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PermissionsAndRoles\PermissionFilterRequest;
 use App\Http\Requests\PermissionsAndRoles\PermissionStoreRequest;
-use App\Http\Requests\PermissionsAndRoles\PermissionUpdateRequest; 
+use App\Http\Requests\PermissionsAndRoles\PermissionUpdateRequest;
 use App\Models\PermissionsAndRoles\Permission;
 use App\Services\PermissionsAndRoles\PermissionService;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response; 
+use Illuminate\Http\Response;
 
 class PermissionController extends Controller
 {
     /**
-     * @var $permissionService 
+     * @var $permissionService
      */
     protected $permissionService;
 
@@ -45,7 +45,7 @@ class PermissionController extends Controller
      *          @OA\Schema(
      *              type="string"
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -68,14 +68,14 @@ class PermissionController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      * )
-     */ 
+     */
     public function index(PermissionFilterRequest $request)
     {
         $this->authorize('permission-list');
         return $this->permissionService->getAll($request);
-    } 
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -91,8 +91,8 @@ class PermissionController extends Controller
      *      tags={"PermissionsAndRoles"},
      *      summary="Store New Permission",
      *      security={{"bearerAuth": {}}},
-     * 
-     *      @OA\RequestBody( 
+     *
+     *      @OA\RequestBody(
      *          required=true,
      *          description = "Store Permission",
      *          @OA\JsonContent(
@@ -107,8 +107,8 @@ class PermissionController extends Controller
      *                  type="string"
      *              ),
      *          ),
-     *      ),     
-     *  
+     *      ),
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Success",
@@ -143,7 +143,7 @@ class PermissionController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -161,7 +161,7 @@ class PermissionController extends Controller
      *                          type="string",
      *                          example="The display title field is required.",
      *                      )
-     *                  ), 
+     *                  ),
      *              )
      *          )
      *      ),
@@ -185,9 +185,9 @@ class PermissionController extends Controller
      *      operationId="getPermissionById",
      *      tags={"PermissionsAndRoles"},
      *      summary="Return specific Permission",
-	 * 		security={{"bearerAuth": {}}},
+     * 		security={{"bearerAuth": {}}},
      *
-	 * 		@OA\Parameter(
+     * 		@OA\Parameter(
      *          name="id",
      *          description="Permission Id",
      *          required=true,
@@ -197,7 +197,7 @@ class PermissionController extends Controller
      *              format="int64"
      *          )
      *      ),
-	 *
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -232,7 +232,7 @@ class PermissionController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function show(Permission $permission)
@@ -256,7 +256,7 @@ class PermissionController extends Controller
      *      tags={"PermissionsAndRoles"},
      *      summary="Update existing Permission",
      *      security={{"bearerAuth": {}}},
-     * 
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Permission ID",
@@ -267,8 +267,8 @@ class PermissionController extends Controller
      *              format="int64"
      *          )
      *      ),
-     * 
-     *      @OA\RequestBody( 
+     *
+     *      @OA\RequestBody(
      *          required=true,
      *          description = "Update Permission",
      *          @OA\JsonContent(
@@ -283,7 +283,7 @@ class PermissionController extends Controller
      *                  type="string"
      *              ),
      *          ),
-     *      ),     
+     *      ),
      *
      *      @OA\Response(
      *          response=200,
@@ -319,7 +319,7 @@ class PermissionController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -337,7 +337,7 @@ class PermissionController extends Controller
      *                          type="string",
      *                          example="The display title field is required.",
      *                      )
-     *                  ), 
+     *                  ),
      *              )
      *          )
      *      ),
@@ -354,7 +354,7 @@ class PermissionController extends Controller
      * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    
+
     /**
      * @OA\Delete(
      *      path="/permissions/{id}",
@@ -374,7 +374,7 @@ class PermissionController extends Controller
      *          )
      *      ),
      *      @OA\Response(
-     *          response=200, 
+     *          response=200,
      *          description="Successful operation",
      *          @OA\MediaType(
      *              mediaType="application/json",
@@ -407,7 +407,7 @@ class PermissionController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function destroy(Permission $permission)

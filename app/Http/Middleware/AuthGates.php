@@ -26,17 +26,17 @@ class AuthGates
             }
         });
 
-        $user = Auth::user(); 
+        $user = Auth::user();
 
-        foreach ($user->roles as $role) { 
-            foreach ($role->permissions as $permission) {  
-                Gate::define( 
+        foreach ($user->roles as $role) {
+            foreach ($role->permissions as $permission) {
+                Gate::define(
                     $permission->title,
                     function (User $user) {
                         return true;
                     }
                 );
-            } 
+            }
         }
 
         return $next($request);

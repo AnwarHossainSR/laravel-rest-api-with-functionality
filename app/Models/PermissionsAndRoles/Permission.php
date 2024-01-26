@@ -9,7 +9,8 @@ use App\Models\BaseModel;
 
 class Permission extends BaseModel
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'title',

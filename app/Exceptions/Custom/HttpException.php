@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Exceptions\Custom;
 
@@ -20,9 +20,9 @@ class HttpException
     }
 
     public function render()
-    { 
+    {
         $message = !empty($this->exception->getMessage()) ? $this->exception->getMessage() : __('auth.unauthorized');
         return $this->failure($message, Response::HTTP_FORBIDDEN);
     }
 
-} 
+}

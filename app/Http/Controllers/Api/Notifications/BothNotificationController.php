@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BothNotificationController extends Controller
 {
     protected $bothNotificationService;
-    
+
     public function __construct(BothNotificationService $bothNotificationService)
     {
         $this->bothNotificationService = $bothNotificationService;
@@ -21,7 +21,7 @@ class BothNotificationController extends Controller
      *      operationId="sendNotificationsBoth",
      *      tags={"Notifications"},
      *      summary="Send Both Notifications",
-     *      description="Send Both Notifications", 
+     *      description="Send Both Notifications",
      *
      *      @OA\Response(
      *          response=200,
@@ -45,7 +45,7 @@ class BothNotificationController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function notify(Request $request)
@@ -54,6 +54,6 @@ class BothNotificationController extends Controller
     }
 
 
-    
-    
+
+
 }

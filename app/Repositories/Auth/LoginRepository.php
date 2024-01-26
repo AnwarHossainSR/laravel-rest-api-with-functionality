@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Auth;
 
@@ -8,23 +8,23 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginRepository
 {
-    /** 
+    /**
      * @var User
      */
     protected $user;
 
-    /** 
+    /**
      * LoginRepository constructor.
-     * 
-     * @param User $post 
+     *
+     * @param User $post
      */
 
-    function __construct(User $user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
-    
-    public function login($request) 
+
+    public function login($request)
     {
         return Auth::attempt(['email' => $request->email, 'password' => $request->password]);
     }

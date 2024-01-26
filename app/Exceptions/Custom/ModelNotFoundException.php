@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Exceptions\Custom;
 
@@ -24,4 +24,4 @@ class ModelNotFoundException
         return $this->failure(trans('messages.notFoundId'), Response::HTTP_NOT_FOUND);
     }
 
-} 
+}

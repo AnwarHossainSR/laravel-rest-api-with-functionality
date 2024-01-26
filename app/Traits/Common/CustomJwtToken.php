@@ -1,14 +1,16 @@
-<?php 
+<?php
 
 namespace App\Traits\Common;
 
-trait CustomJwtToken {
+trait CustomJwtToken
+{
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed
      */
-    public function getJWTIdentifier() {
+    public function getJWTIdentifier()
+    {
         return $this->getKey();
     }
 
@@ -17,7 +19,8 @@ trait CustomJwtToken {
      *
      * @return array
      */
-    public function getJWTCustomClaims() {
+    public function getJWTCustomClaims()
+    {
         return [];
-    }    
+    }
 }

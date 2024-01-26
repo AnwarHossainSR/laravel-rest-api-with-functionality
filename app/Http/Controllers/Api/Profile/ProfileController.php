@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Api\Profile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\ProfileUpdateRequest;
 use App\Models\Blogs\Post;
-use App\Services\Profile\ProfileService; 
+use App\Services\Profile\ProfileService;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
     /**
-     * @var $profileService 
+     * @var $profileService
      */
     protected $profileService;
 
@@ -35,17 +35,17 @@ class ProfileController extends Controller
      *      tags={"Profile"},
      *      summary="Update Profile",
      *      security={{"bearerAuth": {}}},
-     *      @OA\RequestBody( 
+     *      @OA\RequestBody(
      *          required=true,
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
-     *              @OA\Schema( 
-     *                  required={"name", "email", "contactNo"}, 
+     *              @OA\Schema(
+     *                  required={"name", "email", "contactNo"},
      *                  @OA\Property(
      *                      property="photo",
      *                      type="file",
      *                      description="Uplaod a image",
-     *                  ), 
+     *                  ),
      *                  @OA\Property(
      *                      property="name",
      *                      description="Name",
@@ -63,11 +63,11 @@ class ProfileController extends Controller
      *                      description="Contact No",
      *                      example="01xxxxxxxxx",
      *                      type="string"
-     *                  )  
+     *                  )
      *              )
      *          )
-     *      ),     
-     *  
+     *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Success",
@@ -102,7 +102,7 @@ class ProfileController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -120,18 +120,18 @@ class ProfileController extends Controller
      *                          type="string",
      *                          example="The name field is required.",
      *                      )
-     *                  ), 
+     *                  ),
      *              )
      *          )
      *      ),
      * )
-     */    
+     */
     public function update(ProfileUpdateRequest $request)
     {
         return $this->profileService->update($request);
     }
-    
 
-    
+
+
 
 }

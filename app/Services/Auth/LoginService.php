@@ -12,7 +12,7 @@ use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
-class LoginService 
+class LoginService
 {
     use RespondsWithHttpStatus;
     /**
@@ -21,8 +21,8 @@ class LoginService
     protected $loginRepository;
 
     /**
-     * LoginService constructor. 
-     * 
+     * LoginService constructor.
+     *
      * @param LoginRepository $loginRepository
      */
 
@@ -38,7 +38,7 @@ class LoginService
             $result = [
                 'tokenType' => CmnEnum::TOKEN_TYPE,
                 'token' => auth('api')->login($user),
-                
+
                 'user' => new UserResource($user)
             ];
             return $this->success(__('messages.loggedIn'), new LoginResource($result));
@@ -52,5 +52,5 @@ class LoginService
         auth()->logout();
         return $this->success(__('messages.loggedOut'));
     }
-    
+
 }

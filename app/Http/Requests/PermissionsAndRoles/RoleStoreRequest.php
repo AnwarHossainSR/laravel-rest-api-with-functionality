@@ -24,10 +24,10 @@ class RoleStoreRequest extends FormRequest
      * @return array
      */
     public function rules()
-    { 
+    {
         return [
             'displayTitle' => [
-                'required', 
+                'required',
                 'string',
                 Rule::unique(config('constants.table.roles'), 'display_title')->whereNull('deleted_at')
             ],
@@ -35,7 +35,7 @@ class RoleStoreRequest extends FormRequest
                 'required',
                 'array',
                 'exists:'. config('constants.table.permissions') . ',id'
-            ] 
+            ]
         ];
     }
 }

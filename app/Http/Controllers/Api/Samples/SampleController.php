@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Api\Samples;
 
-use App\Http\Controllers\Api\BaseController;  
+use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\Samples\SampleFilterRequest;
 use App\Http\Requests\Samples\SampleStoreRequest;
-use App\Http\Requests\Samples\SampleUpdateRequest; 
+use App\Http\Requests\Samples\SampleUpdateRequest;
 use App\Models\Samples\Sample;
-use App\Services\Samples\SampleService; 
+use App\Services\Samples\SampleService;
 
 class SampleController extends BaseController
 {
     /**
-     * @var $sampleService 
+     * @var $sampleService
      */
     protected $sampleService;
 
@@ -27,7 +27,7 @@ class SampleController extends BaseController
      * @return \Illuminate\Http\Response
      */
 
-    
+
     // FN : getAll
     /**
      * @OA\Get(
@@ -86,7 +86,7 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=405,
      *          description="Method Not Allowed",
@@ -102,9 +102,9 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="Ops! Internal Server Errors"),
      *          )
-     *      ), 
+     *      ),
      * )
-     */ 
+     */
 
     public function index(SampleFilterRequest $request)
     {
@@ -160,7 +160,7 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=405,
      *          description="Method Not Allowed",
@@ -176,7 +176,7 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="Ops! Internal Server Errors"),
      *          )
-     *      ), 
+     *      ),
      * )
      */
 
@@ -192,7 +192,7 @@ class SampleController extends BaseController
      * @return \Illuminate\Http\Response
      */
 
-     // FN: store 
+    // FN: store
     /**
      * @OA\Post(
      *     path="/samples",
@@ -200,7 +200,7 @@ class SampleController extends BaseController
      *      tags={"Samples"},
      *      summary="Store New Sample",
      *      security={{"bearerAuth": {}}},
-     * 
+     *
      *      @OA\Parameter(
      *         name="lang",
      *         in="header",
@@ -209,7 +209,7 @@ class SampleController extends BaseController
      *             type="string"
      *         )
      *      ),
-     * 
+     *
      *      @OA\RequestBody(
      *          required=true,
      *          description="Create the sample",
@@ -229,10 +229,10 @@ class SampleController extends BaseController
      *                  description="Detail",
      *                  example="detail 101",
      *                  type="string"
-     *              ) 
+     *              )
      *          )
      *      ),
-     * 
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Success",
@@ -263,7 +263,7 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=405,
      *          description="Method Not Allowed",
@@ -289,7 +289,7 @@ class SampleController extends BaseController
      *                          type="string",
      *                          example="The name field is required.",
      *                      )
-     *                  ) 
+     *                  )
      *              )
      *          )
      *      ),
@@ -300,7 +300,7 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="Ops! Internal Server Errors"),
      *          )
-     *      ), 
+     *      ),
      * )
      */
 
@@ -323,7 +323,7 @@ class SampleController extends BaseController
      *      operationId="getSampleById",
      *      tags={"Samples"},
      *      summary="Return specific Sample",
-	 * 		security={{"bearerAuth": {}}},
+     * 		security={{"bearerAuth": {}}},
      *
      *      @OA\Parameter(
      *         name="lang",
@@ -333,7 +333,7 @@ class SampleController extends BaseController
      *             type="string"
      *         )
      *      ),
-	 * 		@OA\Parameter(
+     * 		@OA\Parameter(
      *          name="id",
      *          description="Sample Id",
      *          required=true,
@@ -343,7 +343,7 @@ class SampleController extends BaseController
      *              format="int64"
      *          )
      *      ),
-	 *
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -382,7 +382,7 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=405,
      *          description="Method Not Allowed",
@@ -398,7 +398,7 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="Ops! Internal Server Errors"),
      *          )
-     *      ), 
+     *      ),
      * )
      */
 
@@ -414,7 +414,7 @@ class SampleController extends BaseController
      *      operationId="getCommonArrById",
      *      tags={"Samples"},
      *      summary="Return specific array data",
-	 * 		security={{"bearerAuth": {}}},
+     * 		security={{"bearerAuth": {}}},
      *
      *      @OA\Parameter(
      *         name="lang",
@@ -424,8 +424,8 @@ class SampleController extends BaseController
      *             type="string"
      *         )
      *      ),
-     * 
-	 * 		@OA\Parameter(
+     *
+     * 		@OA\Parameter(
      *          name="id",
      *          description="Sample Id",
      *          required=true,
@@ -435,7 +435,7 @@ class SampleController extends BaseController
      *              format="int64"
      *          )
      *      ),
-	 *
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -474,7 +474,7 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=405,
      *          description="Method Not Allowed",
@@ -490,7 +490,7 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="Ops! Internal Server Errors"),
      *          )
-     *      ), 
+     *      ),
      * )
      */
 
@@ -508,7 +508,7 @@ class SampleController extends BaseController
      */
 
 
-    
+
 
     // FN : update
     /**
@@ -518,7 +518,7 @@ class SampleController extends BaseController
      *      tags={"Samples"},
      *      summary="Update existing Sample",
      *      security={{"bearerAuth": {}}},
-     * 
+     *
      *      @OA\Parameter(
      *         name="lang",
      *         in="header",
@@ -527,7 +527,7 @@ class SampleController extends BaseController
      *             type="string"
      *         )
      *      ),
-     * 
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Sample ID",
@@ -538,8 +538,8 @@ class SampleController extends BaseController
      *              format="int64"
      *          )
      *      ),
-     * 
-     *      @OA\RequestBody( 
+     *
+     *      @OA\RequestBody(
      *          required=true,
      *          description="Update the sample",
      *          @OA\JsonContent(
@@ -558,7 +558,7 @@ class SampleController extends BaseController
      *                  description="Detail",
      *                  example="detail 101",
      *                  type="string"
-     *              ) 
+     *              )
      *          )
      *      ),
      *
@@ -592,7 +592,7 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=405,
      *          description="Method Not Allowed",
@@ -618,7 +618,7 @@ class SampleController extends BaseController
      *                          type="string",
      *                          example="The name field is required.",
      *                      )
-     *                  ) 
+     *                  )
      *              )
      *          )
      *      ),
@@ -629,11 +629,11 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="Ops! Internal Server Errors"),
      *          )
-     *      ), 
+     *      ),
      * )
      */
 
-   
+
 
 
     public function update(SampleUpdateRequest $request, Sample $sample)
@@ -658,7 +658,7 @@ class SampleController extends BaseController
      *      summary="Delete existing Sample",
      *      description="Deletes a record and returns no content",
      *      security={{"bearerAuth": {}}},
-     * 
+     *
      *      @OA\Parameter(
      *         name="lang",
      *         in="header",
@@ -667,7 +667,7 @@ class SampleController extends BaseController
      *             type="string"
      *         )
      *      ),
-     * 
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Sample Id",
@@ -679,7 +679,7 @@ class SampleController extends BaseController
      *          )
      *      ),
      *      @OA\Response(
-     *          response=200, 
+     *          response=200,
      *          description="Successful operation",
      *          @OA\MediaType(
      *              mediaType="application/json",
@@ -716,7 +716,7 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=405,
      *          description="Method Not Allowed",
@@ -732,13 +732,13 @@ class SampleController extends BaseController
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="Ops! Internal Server Errors"),
      *          )
-     *      ), 
+     *      ),
      * )
      */
 
     public function destroy(Sample $sample)
     {
         return $this->sampleService->destroy($sample);
-    } 
+    }
 
 }

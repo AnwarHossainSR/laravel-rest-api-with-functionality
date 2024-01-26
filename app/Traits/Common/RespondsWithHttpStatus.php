@@ -3,19 +3,19 @@
 namespace App\Traits\Common;
 
 use App\Enums\CmnEnum;
-use Illuminate\Http\Response; 
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 
 trait RespondsWithHttpStatus
 {
     protected function success($message, $result = [], $status = Response::HTTP_OK)
-    { 
+    {
         $response = [
             'success' => true,
-            'message' => $message 
+            'message' => $message
         ];
 
-        if($this->isResultNotEmpty($result)) { 
+        if($this->isResultNotEmpty($result)) {
             $response['result'] = $result;
         }
         return response()->json($response, $status);
@@ -29,7 +29,7 @@ trait RespondsWithHttpStatus
         ];
         if ($this->hasErrors($error)) {
             $response['errors'] = $error;
-        } 
+        }
         return response()->json($response, $code);
     }
 
@@ -41,9 +41,9 @@ trait RespondsWithHttpStatus
         if (empty($result)) {
             return false;
         }
-        if (isset($result['data']) && $result['data']->count() <= CmnEnum::ZERO ) {
+        if (isset($result['data']) && $result['data']->count() <= CmnEnum::ZERO) {
             return false;
-        } 
+        }
         if (!isset($result['data']) && !isset($result['tokenType']) && $result instanceof Collection && $result->count() <= CmnEnum::ZERO) {
             return false;
         }
@@ -57,7 +57,7 @@ trait RespondsWithHttpStatus
         }
         return false;
     }
-    
+
     protected function errorMessage($error)
     {
         return (!is_array($error) && !is_object($error)) ? $error : __('messages.commonMessageForInputError');

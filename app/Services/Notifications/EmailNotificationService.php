@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services\Notifications;
 
@@ -9,10 +9,10 @@ use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Notification;
 
-class EmailNotificationService 
+class EmailNotificationService
 {
     use RespondsWithHttpStatus;
-    
+
     /**
      * Validate category data.
      * Store to DB if there are no errors.
@@ -25,16 +25,16 @@ class EmailNotificationService
         $user = User::find(1);
         $data = [
             'name' => '#001 Bill',
-            'body' => 'You have received a new bill.', 
+            'body' => 'You have received a new bill.',
             'amount' => '$500',
             'offer' => url('/'),
             'bill_id' => 10001
         ];
         //$user = $user->notify(new SendEmailNotification($data));
-        Notification::send($user, new SendEmailNotification($data)); 
+        Notification::send($user, new SendEmailNotification($data));
         return $this->success('Email Notification is sent successfully!');
     }
- 
- 
- 
+
+
+
 }

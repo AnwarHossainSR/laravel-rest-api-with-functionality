@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services\Notifications;
 
@@ -10,7 +10,7 @@ use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Notification;
 
-class PushNotificationService 
+class PushNotificationService
 {
     use RespondsWithHttpStatus;
 
@@ -26,16 +26,16 @@ class PushNotificationService
         $user = User::find(1);
         $data = [
             'name' => '#003 Bill',
-            'body' => 'You have received a new bill.', 
+            'body' => 'You have received a new bill.',
             'amount' => '$800',
             'offer' => url('/'),
             'bill_id' => 10003
-        ]; 
+        ];
         //dd($data, $user);
-        //Notification::send($user, new SendBothNotification($data)); 
+        //Notification::send($user, new SendBothNotification($data));
         event(new \App\Events\SendPushRandomMessage());
         return $this->success('Push Notification is sent successfully!');
     }
- 
- 
+
+
 }

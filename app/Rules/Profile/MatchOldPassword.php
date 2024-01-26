@@ -35,7 +35,7 @@ class MatchOldPassword implements Rule
      * @return string
      */
     public function message()
-    { 
+    {
         return __('messages.matchOldPassword');
     }
 }

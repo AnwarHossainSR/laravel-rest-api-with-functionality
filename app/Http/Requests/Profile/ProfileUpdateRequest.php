@@ -33,15 +33,15 @@ class ProfileUpdateRequest extends FormRequest
             ],
             'name' => 'required|string',
             'email' => [
-                'required', 
-                'email', 
+                'required',
+                'email',
                 'unique:' . config('constants.table.users') . ',email,' . Auth::user()->id,
                 'max:' . CmnEnum::DEFAULT_EMAIL_CHAR_MAX,
                 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'
             ],
             'contactNo' => [
-                'required', 
-                'digits_between:' . CmnEnum::CONTACT_NO_MIN . ',' . CmnEnum::CONTACT_NO_MAX, 
+                'required',
+                'digits_between:' . CmnEnum::CONTACT_NO_MIN . ',' . CmnEnum::CONTACT_NO_MAX,
             ]
         ];
     }

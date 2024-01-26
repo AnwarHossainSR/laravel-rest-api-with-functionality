@@ -4,19 +4,18 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\Auth\ResetPasswordRequest;
-use App\Services\Auth\ResetPasswordService; 
+use App\Services\Auth\ResetPasswordService;
 
 class ResetPasswordController extends BaseController
 {
-
     /**
      * @var $resetPasswordService
      */
     protected $resetPasswordService;
 
     /**
-     * ResetPasswordController constructor. 
-     * 
+     * ResetPasswordController constructor.
+     *
      * @param ResetPasswordService $resetPasswordService
      */
     public function __construct(ResetPasswordService $resetPasswordService)
@@ -35,7 +34,7 @@ class ResetPasswordController extends BaseController
      *      tags={"Auth"},
      *      summary="Reset Password",
      *      operationId="resetPassword",
-     * 
+     *
      *      @OA\RequestBody(
      *          required=true,
      *          description="Reset Password",
@@ -61,16 +60,16 @@ class ResetPasswordController extends BaseController
      *                  description="Confirmation Password of User",
      *                  example="xxxxxxxx",
      *                  type="password"
-     *              ), 
+     *              ),
      *              @OA\Property(
      *                  property="token",
      *                  description="Token",
      *                  example="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
      *                  type="string"
-     *              ), 
+     *              ),
      *          )
      *      ),
-     * 
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Success",
@@ -78,11 +77,11 @@ class ResetPasswordController extends BaseController
      *              @OA\Property(property="success", type="string", example=true),
      *              @OA\Property(property="message", type="string", example="Your password has been reset!"),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -112,13 +111,13 @@ class ResetPasswordController extends BaseController
      *                  )
      *              )
      *          )
-     *      ), 
+     *      ),
      * )
      **/
     public function resetPassword(ResetPasswordRequest $request)
     {
         return $this->resetPasswordService->resetPassword($request);
-    } 
-     
-      
+    }
+
+
 }

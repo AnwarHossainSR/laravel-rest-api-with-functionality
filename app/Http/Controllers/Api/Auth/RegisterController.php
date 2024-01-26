@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Api\BaseController; 
+use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\Auth\RegisterService;
 use Illuminate\Http\Request;
 
 class RegisterController extends BaseController
 {
-
     protected $registerService;
 
     public function __construct(RegisterService $registerService)
@@ -22,7 +21,7 @@ class RegisterController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-         
+
     /**
      * @OA\Post(
      *      path="/register",
@@ -61,10 +60,10 @@ class RegisterController extends BaseController
      *                  description="Confirmation Password of User",
      *                  example="xxxxxxxx",
      *                  type="password"
-     *              ), 
+     *              ),
      *          )
      *      ),
-     * 
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Success",
@@ -72,11 +71,11 @@ class RegisterController extends BaseController
      *              mediaType="application/json",
      *          )
      *      ),
-     * 
+     *
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -106,13 +105,13 @@ class RegisterController extends BaseController
      *                  )
      *              )
      *          )
-     *      ), 
+     *      ),
      * )
      **/
     public function register(RegisterRequest $request)
-    { 
+    {
         return $this->registerService->register($request);
     }
- 
-    
+
+
 }

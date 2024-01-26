@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Blogs;
 
@@ -7,27 +7,27 @@ use Illuminate\Support\Str;
 
 class CommentRepository
 {
-    /** 
+    /**
      * @var Comment
      */
     protected $comment;
 
-    /** 
+    /**
      * LoginRepository constructor.
-     * 
-     * @param Comment $comment 
+     *
+     * @param Comment $comment
      */
 
-    function __construct(Comment $comment)
+    public function __construct(Comment $comment)
     {
         $this->comment = $comment;
     }
 
     public function getAll($request)
     {
-  
+
     }
- 
+
 
     public function get($comment)
     {
@@ -41,10 +41,10 @@ class CommentRepository
 
     public function store($request, $post)
     {
-        $comment = new $this->comment;
+        $comment = new $this->comment();
         $comment->comment = $request->comment;
         $comment->postId = $post->id;
-        $comment->user()->associate($request->user());  
+        $comment->user()->associate($request->user());
         $post->comments()->save($comment);
         return $post->fresh();
     }
@@ -53,10 +53,10 @@ class CommentRepository
     {
         $reply = new Comment();
         $reply->postId = $post->id;
-        $reply->parentId = $request->parentId; 
+        $reply->parentId = $request->parentId;
         $reply->comment = $request->comment;
         $reply->user()->associate($request->user());
-        $post->comments()->save($reply); 
+        $post->comments()->save($reply);
         $post->comments = $post->comments()->where('id', $request->parentId)->get();
         return $post;
     }

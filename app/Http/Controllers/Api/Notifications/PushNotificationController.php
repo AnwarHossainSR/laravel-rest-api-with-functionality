@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PushNotificationController extends Controller
 {
     protected $pushNotificationService;
-    
+
     public function __construct(PushNotificationService $pushNotificationService)
     {
         $this->pushNotificationService = $pushNotificationService;
@@ -21,7 +21,7 @@ class PushNotificationController extends Controller
      *      operationId="sendPushNotification",
      *      tags={"Notifications"},
      *      summary="Send Push Notification",
-     *      description="Send Push Notification", 
+     *      description="Send Push Notification",
      *
      *      @OA\Response(
      *          response=200,
@@ -45,7 +45,7 @@ class PushNotificationController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function notify(Request $request)
@@ -53,5 +53,5 @@ class PushNotificationController extends Controller
         return $this->pushNotificationService->notify($request);
     }
 
-    
+
 }

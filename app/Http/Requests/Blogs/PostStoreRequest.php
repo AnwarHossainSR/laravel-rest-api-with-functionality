@@ -31,11 +31,11 @@ class PostStoreRequest extends FormRequest
                 'exists:' . config('constants.table.categories') . ',id'
             ],
             'title' => [
-                'required', 
+                'required',
                 'string',
                 'unique:' . config('constants.table.posts') . ',title',
                 'max:' . CmnEnum::DEFAULT_TITLE_CHAR_MAX
-            ], 
+            ],
             'image' => [
                 'nullable',
                 'image',

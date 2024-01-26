@@ -15,18 +15,18 @@ class PostResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id, 
+            'id' => $this->id,
             'category' => new CategoryResource($this->category),
             'slug' => $this->slug,
             'title' => $this->title,
-            'body' => $this->body, 
+            'body' => $this->body,
             'basePath' => config('app.url') . '/' . config('constants.path.storage'),
-            'imagePath' => $this->image_path, 
-            'thumbnailPath' => $this->thumbnail_path, 
+            'imagePath' => $this->image_path,
+            'thumbnailPath' => $this->thumbnail_path,
             'comments' => CommentResource::collection($this->comments),
-            'publishedAt' => $this->published_at, 
-            'createdAt' => $this->created_at, 
-            'updatedAt' => $this->updated_at, 
+            'publishedAt' => $this->published_at,
+            'createdAt' => $this->created_at,
+            'updatedAt' => $this->updated_at,
         ];
     }
 }

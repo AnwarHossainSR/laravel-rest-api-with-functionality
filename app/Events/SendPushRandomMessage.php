@@ -13,7 +13,9 @@ use Illuminate\Support\Str;
 
 class SendPushRandomMessage implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public $message;
     public $count;
@@ -36,7 +38,7 @@ class SendPushRandomMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('notification-channel'); 
+        return new Channel('notification-channel');
     }
 
     public function broadcastWith()

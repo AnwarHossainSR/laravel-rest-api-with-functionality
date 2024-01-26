@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class EmailNotificationController extends Controller
 {
     protected $emailNotificationService;
-    
+
     public function __construct(EmailNotificationService $emailNotificationService)
     {
         $this->emailNotificationService = $emailNotificationService;
@@ -21,7 +21,7 @@ class EmailNotificationController extends Controller
      *      operationId="sendEmailNotification",
      *      tags={"Notifications"},
      *      summary="Send Email Notification",
-     *      description="Send Email Notification", 
+     *      description="Send Email Notification",
      *
      *      @OA\Response(
      *          response=200,
@@ -45,7 +45,7 @@ class EmailNotificationController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function notify(Request $request)
@@ -53,5 +53,5 @@ class EmailNotificationController extends Controller
         return $this->emailNotificationService->notify($request);
     }
 
-    
+
 }

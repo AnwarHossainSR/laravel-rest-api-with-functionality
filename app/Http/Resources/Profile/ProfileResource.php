@@ -15,14 +15,14 @@ class ProfileResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,  
+            'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'contactNo' => $this->contact_no, 
+            'contactNo' => $this->contact_no,
             'basePath' => config('app.url') . '/' . config('constants.path.storage'),
-            'profilePhotoPath' => $this->profile_photo_path,    
-            'createdAt' => $this->created_at, 
-            'updatedAt' => $this->updated_at, 
+            'profilePhotoPath' => $this->profile_photo_path,
+            'createdAt' => $this->created_at,
+            'updatedAt' => $this->updated_at,
         ];
     }
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Exceptions\Custom;
 
@@ -21,9 +21,9 @@ class QueryException
     }
 
     public function render()
-    { 
-        $message = App::environment('local', 'staging') ? $this->exception->getMessage() :  __('messages.queryException');
+    {
+        $message = App::environment('local', 'staging') ? $this->exception->getMessage() : __('messages.queryException');
         return $this->failure($message, Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 
-} 
+}

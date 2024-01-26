@@ -27,11 +27,11 @@ class PermissionStoreRequest extends FormRequest
     {
         return [
             'displayTitle' => [
-                'required', 
+                'required',
                 'string',
                 Rule::unique(config('constants.table.permissions'), 'display_title')->whereNull('deleted_at')
             ],
-            
+
         ];
     }
 }

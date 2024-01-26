@@ -47,7 +47,7 @@ class ResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         $url = config('app.fe_url') . '/reset-password?token=' . $this->token . '&email=' . $notifiable->getEmailForPasswordReset();
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject(Lang::get('mail.resetPassword.subject'))
             ->line(Lang::get('mail.resetPassword.line1'))
             ->action(Lang::get('mail.resetPassword.actionText'), $url)

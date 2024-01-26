@@ -25,13 +25,13 @@ class PermissionUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [ 
+        return [
             'displayTitle' => [
-                'nullable', 
+                'nullable',
                 'string',
                 Rule::unique(config('constants.table.permissions'), 'display_title')->ignore($this->permission)->whereNull('deleted_at')
             ],
-            
+
         ];
     }
 }

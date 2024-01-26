@@ -27,14 +27,14 @@ class ChangePasswordRequest extends FormRequest
      */
     public function rules()
     {
-        return [ 
-            'currentPassword' => ['required', new NotMatchCurrentPassword],
+        return [
+            'currentPassword' => ['required', new NotMatchCurrentPassword()],
             'newPassword' => [
                 'required',
-                'min:' . CmnEnum::PASSWORD_MIN_LENGTH, 
+                'min:' . CmnEnum::PASSWORD_MIN_LENGTH,
                 //'max:' . CmnEnum::PASSWORD_MAX_LENGTH,
                 //'confirmed',
-                new MatchOldPassword
+                new MatchOldPassword()
             ],
             'newPasswordConfirmation' => ['same:newPassword']
         ];

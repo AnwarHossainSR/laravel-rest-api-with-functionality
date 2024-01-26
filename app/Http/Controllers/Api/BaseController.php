@@ -18,12 +18,12 @@ use App\Traits\Common\RespondsWithHttpStatus;
 *         url="http://www.apache.org/licenses/LICENSE-2.0.html"
 *     )
 * )
-* 
+*
 * @OA\Server(
 *     url=L5_SWAGGER_CONST_HOST,
 *     description="Demo API Server"
 * )
-* 
+*
 * @OA\Schemes(format="http"),
 * @OA\SecurityScheme(
 *     securityScheme="bearerAuth",

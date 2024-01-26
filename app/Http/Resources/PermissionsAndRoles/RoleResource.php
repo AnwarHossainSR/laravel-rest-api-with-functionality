@@ -17,7 +17,7 @@ class RoleResource extends JsonResource
     public function toArray($request)
     {
         $rtrData = [
-            'id' => $this->id, 
+            'id' => $this->id,
             'title' => $this->title,
             'displayTitle' => $this->display_title,
             //'permissions' => PermissionResource::collection($this->permissions)
@@ -27,10 +27,10 @@ class RoleResource extends JsonResource
         }
         return $rtrData;
     }
- 
+
     public static function customCollection($resource, $data): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-    { 
-        self::$data = $data; 
+    {
+        self::$data = $data;
         return parent::collection($resource);
     }
 }

@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Api\PermissionsAndRoles;
 
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PermissionsAndRoles\RoleFilterRequest;
 use App\Http\Requests\PermissionsAndRoles\RoleStoreRequest;
-use App\Http\Requests\PermissionsAndRoles\RoleUpdateRequest; 
+use App\Http\Requests\PermissionsAndRoles\RoleUpdateRequest;
 use App\Models\PermissionsAndRoles\Role;
 use App\Services\PermissionsAndRoles\RoleService;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response; 
+use Illuminate\Http\Response;
 
 class RoleController extends Controller
 {
     /**
-     * @var $roleService 
+     * @var $roleService
      */
     protected $roleService;
 
@@ -28,7 +28,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     /**
      * @OA\Get(
      *      path="/roles",
@@ -45,10 +45,10 @@ class RoleController extends Controller
      *          @OA\Schema(
      *              type="string"
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation", 
+     *          description="Successful operation",
      *          @OA\MediaType(
      *              mediaType="application/json",
      *          )
@@ -72,10 +72,10 @@ class RoleController extends Controller
      * )
      */
     public function index(RoleFilterRequest $request)
-    { 
+    {
         $this->authorize('role-list');
         return $this->roleService->getAll($request);
-    } 
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -91,8 +91,8 @@ class RoleController extends Controller
      *      tags={"PermissionsAndRoles"},
      *      summary="Store New Role",
      *      security={{"bearerAuth": {}}},
-     * 
-     *      @OA\RequestBody( 
+     *
+     *      @OA\RequestBody(
      *          required=true,
      *          description="Create the role",
      *          @OA\JsonContent(
@@ -105,20 +105,20 @@ class RoleController extends Controller
      *                  description="Title of the role",
      *                  example="Manager",
      *                  type="string"
-     *              ), 
+     *              ),
      *              @OA\Property(
      *                  property="permissions",
      *                  description="permissions in array",
      *                  type="array",
      *                  @OA\Items(
-     *                      title="list of Permissions Ids", 
+     *                      title="list of Permissions Ids",
      *                      type="integer",
      *                      example=1
      *                  )
      *              ),
      *          ),
-     *      ), 
-     * 
+     *      ),
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Success",
@@ -145,7 +145,7 @@ class RoleController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -196,9 +196,9 @@ class RoleController extends Controller
      *      operationId="getRoleById",
      *      tags={"PermissionsAndRoles"},
      *      summary="Return specific Role",
-	 * 		security={{"bearerAuth": {}}},
+     * 		security={{"bearerAuth": {}}},
      *
-	 * 		@OA\Parameter(
+     * 		@OA\Parameter(
      *          name="id",
      *          description="Role Id",
      *          required=true,
@@ -208,7 +208,7 @@ class RoleController extends Controller
      *              format="int64"
      *          )
      *      ),
-	 *
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -243,7 +243,7 @@ class RoleController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function show(Role $role)
@@ -259,7 +259,7 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Put(
      *     path="/roles/{id}",
@@ -267,7 +267,7 @@ class RoleController extends Controller
      *      tags={"PermissionsAndRoles"},
      *      summary="Update existing Role",
      *      security={{"bearerAuth": {}}},
-     * 
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Role ID",
@@ -277,8 +277,8 @@ class RoleController extends Controller
      *              type="integer",
      *              format="int64"
      *          )
-     *      ), 
-     * 
+     *      ),
+     *
      *      @OA\RequestBody(
      *          required=true,
      *          description="Update the role",
@@ -292,20 +292,20 @@ class RoleController extends Controller
      *                  description="Title of the role",
      *                  example="Manager",
      *                  type="string"
-     *              ), 
+     *              ),
      *              @OA\Property(
      *                  property="permissions",
      *                  description="permissions in array",
      *                  type="array",
      *                  @OA\Items(
-     *                      title="list of Permissions Ids", 
+     *                      title="list of Permissions Ids",
      *                      type="integer",
      *                      example=1
      *                  )
      *              ),
      *          ),
-     *      ), 
-     * 
+     *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Success",
@@ -340,7 +340,7 @@ class RoleController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -384,7 +384,7 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Delete(
      *      path="/roles/{id}",
@@ -404,7 +404,7 @@ class RoleController extends Controller
      *          )
      *      ),
      *      @OA\Response(
-     *          response=200, 
+     *          response=200,
      *          description="Successful operation",
      *          @OA\MediaType(
      *              mediaType="application/json",
@@ -437,7 +437,7 @@ class RoleController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function destroy(Role $role)
@@ -446,5 +446,5 @@ class RoleController extends Controller
         return $this->roleService->destroy($role);
     }
 
- 
+
 }

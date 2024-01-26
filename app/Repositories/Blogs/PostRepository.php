@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Blogs;
 
@@ -7,18 +7,18 @@ use Illuminate\Support\Str;
 
 class PostRepository
 {
-    /** 
+    /**
      * @var Post
      */
     protected $post;
 
-    /** 
+    /**
      * LoginRepository constructor.
-     * 
-     * @param Post $post 
+     *
+     * @param Post $post
      */
 
-    function __construct(Post $post)
+    public function __construct(Post $post)
     {
         $this->post = $post;
     }
@@ -26,21 +26,21 @@ class PostRepository
     public function getAll($request)
     {
         return $this->post
-        ->when($request->searchText, function($q) use ($request) {
-            return $q->where(function($q) use ($request) {
+        ->when($request->searchText, function ($q) use ($request) {
+            return $q->where(function ($q) use ($request) {
                 $q->where('title', 'like', '%' . $request->searchText . '%')
                 ->orWhere('slug', 'like', '%' . $request->searchText . '%');
             });
-        }) 
-        ->when($request->startDate, function($q) use ($request) {
+        })
+        ->when($request->startDate, function ($q) use ($request) {
             return $q->where('created_at', '>=', $request->startDate);
         })
-        ->when($request->endDate, function($q) use ($request) {
+        ->when($request->endDate, function ($q) use ($request) {
             return $q->where('created_at', '<=', $request->endDate);
         })
         ->latest()
         ->paginate(config('constants.paginate'));
-    } 
+    }
 
     public function get($post)
     {
@@ -61,9 +61,9 @@ class PostRepository
 
     public function destroy($post)
     {
-        foreach ($post->comments as $comment) { 
+        foreach ($post->comments as $comment) {
             $comment->replies()->delete();
-        }  
+        }
         $post->comments()->delete();
         return $post->delete();
     }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Users;
 
@@ -6,20 +6,20 @@ use App\Enums\CmnEnum;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class UserRepository 
+class UserRepository
 {
-    /** 
+    /**
      * @var User
      */
     protected $user;
 
-    /** 
+    /**
      * UserRepository constructor.
-     * 
-     * @param User $post 
+     *
+     * @param User $post
      */
 
-    function __construct(User $user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
@@ -27,27 +27,27 @@ class UserRepository
     public function getAll($request)
     {
         return $this->user
-        ->when($request->searchText, function($q) use ($request) {
-            return $q->where(function($q) use ($request) {
+        ->when($request->searchText, function ($q) use ($request) {
+            return $q->where(function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->searchText . '%')
                 ->orWhere('email', 'like', '%' . $request->searchText . '%');
             });
-        })   
-        ->when($request->startDate, function($q) use ($request) {
+        })
+        ->when($request->startDate, function ($q) use ($request) {
             return $q->where('created_at', '>=', $request->startDate);
         })
-        ->when($request->endDate, function($q) use ($request) {
+        ->when($request->endDate, function ($q) use ($request) {
             return $q->where('created_at', '<=', $request->endDate);
         })
         ->latest()
         ->paginate(config('constants.paginate'));
     }
 
-    public function list($request) 
+    public function list($request)
     {
         return $this->user
-        ->when($request->searchText, function($q) use ($request) {
-            return $q->where(function($q) use ($request) {
+        ->when($request->searchText, function ($q) use ($request) {
+            return $q->where(function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->searchText . '%')
                 ->orWhere('email', 'like', '%' . $request->searchText . '%');
             });
@@ -63,7 +63,7 @@ class UserRepository
     {
         $input = $request->validated();
         $input['password'] = Hash::make($input['password']);
-        $user = $this->user->create($input);  
+        $user = $this->user->create($input);
         $user->roles()->attach($request->roles ?? [CmnEnum::ROLE_USER_ID]);
         return $user->fresh();
     }
@@ -73,7 +73,7 @@ class UserRepository
         $input = $request->validated();
         $input['password'] = Hash::make($input['password']);
         $user->update($input);
-        $user->sync($request->roles ?? []); 
+        $user->sync($request->roles ?? []);
         return $user->fresh();
     }
 

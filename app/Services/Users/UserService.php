@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services\Users;
 
@@ -10,7 +10,7 @@ use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
-class UserService 
+class UserService
 {
     use RespondsWithHttpStatus;
 
@@ -20,8 +20,8 @@ class UserService
     protected $userRepository;
 
     /**
-     * UserService constructor. 
-     * 
+     * UserService constructor.
+     *
      * @param UserRepository $userRepository
      */
 
@@ -32,7 +32,7 @@ class UserService
 
     public function getAll($request)
     {
-        return $this->success('',  new UserCollection($this->userRepository->getAll($request)));
+        return $this->success('', new UserCollection($this->userRepository->getAll($request)));
     }
 
     public function list($request)
@@ -64,10 +64,10 @@ class UserService
         if($result) {
             return $this->success(__('messages.crud.stored'), new UserResource($result), Response::HTTP_CREATED);
         }
-        return $this->failure( __('messages.crud.storeFailed'));
+        return $this->failure(__('messages.crud.storeFailed'));
     }
 
-     
+
     /**
      * Update user data
      * Store to DB if there are no errors.
@@ -80,10 +80,10 @@ class UserService
         $result = $this->userRepository->update($request, $user);
         if($result) {
             return $this->success(__('messages.crud.updated'), new UserResource($result));
-        }  
+        }
         return $this->failure(__('messages.crud.updateFailed'));
     }
- 
+
     /**
      * Delete user by id.
      *
@@ -94,7 +94,7 @@ class UserService
     {
         $result = $this->userRepository->destroy($user);
         if($result) {
-            return $this->success(__('messages.crud.deleted')); 
+            return $this->success(__('messages.crud.deleted'));
         }
         return $this->failure(__('messages.crud.deleteFailed'));
     }

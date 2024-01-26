@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace App\Traits\Blogs;
 
 use App\Models\Blogs\Post;
 
-trait CustomBlog 
+trait CustomBlog
 {
     public function posts()
     {

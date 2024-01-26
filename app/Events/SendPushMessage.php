@@ -12,7 +12,9 @@ use Illuminate\Queue\SerializesModels;
 
 class SendPushMessage implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public $data;
 
@@ -32,7 +34,7 @@ class SendPushMessage implements ShouldBroadcast
      * @return \Illuminate\Broadcasting\Channel|array
      */
     public function broadcastOn()
-    { 
+    {
         return new Channel('notification-channel');
     }
 

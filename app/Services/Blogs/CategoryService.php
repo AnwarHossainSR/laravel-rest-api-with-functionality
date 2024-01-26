@@ -1,15 +1,15 @@
-<?php 
+<?php
 
 namespace App\Services\Blogs;
 
 use App\Http\Resources\Blogs\CategoryCollection;
-use App\Http\Resources\Blogs\CategoryResource; 
-use App\Repositories\Blogs\CategoryRepository; 
+use App\Http\Resources\Blogs\CategoryResource;
+use App\Repositories\Blogs\CategoryRepository;
 use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 
-class CategoryService 
+class CategoryService
 {
     use RespondsWithHttpStatus;
     /**
@@ -18,8 +18,8 @@ class CategoryService
     protected $categoryRepository;
 
     /**
-     * CategoryService constructor. 
-     * 
+     * CategoryService constructor.
+     *
      * @param CategoryRepository $categoryRepository
      */
 
@@ -30,8 +30,8 @@ class CategoryService
 
     public function getAll($request)
     {
-        return $this->success('',  new CategoryCollection($this->categoryRepository->getAll($request)));
-    } 
+        return $this->success('', new CategoryCollection($this->categoryRepository->getAll($request)));
+    }
 
     /**
      * Get category by id.
@@ -56,15 +56,15 @@ class CategoryService
         $request->merge([
             'slug' => Str::slug($request->title)
         ]);
-        
+
         $result = $this->categoryRepository->store($request);
         if($result) {
             return $this->success(__('messages.crud.stored'), new CategoryResource($result), Response::HTTP_CREATED);
         }
-        return $this->failure( __('messages.crud.storeFailed'));
+        return $this->failure(__('messages.crud.storeFailed'));
     }
 
-     
+
     /**
      * Update postCategory data
      * Store to DB if there are no errors.
@@ -81,10 +81,10 @@ class CategoryService
         $result = $this->categoryRepository->update($request, $category);
         if($result) {
             return $this->success(__('messages.crud.updated'), new CategoryResource($result));
-        }  
+        }
         return $this->failure(__('messages.crud.updateFailed'));
     }
- 
+
     /**
      * Delete category by id.
      *

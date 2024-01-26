@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services\Notifications;
 
@@ -9,7 +9,7 @@ use App\Traits\Common\RespondsWithHttpStatus;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Notification;
 
-class DatabaseNotificationService 
+class DatabaseNotificationService
 {
     use RespondsWithHttpStatus;
 
@@ -42,16 +42,16 @@ class DatabaseNotificationService
         $user = User::find(1);
         $data = [
             'name' => '#002 Bill',
-            'body' => 'You have received a new bill.', 
+            'body' => 'You have received a new bill.',
             'amount' => '$600',
             'offer' => url('/'),
             'bill_id' => 10002
         ];
         //$user = $user->notify(new SendEmailNotification($data));
-        Notification::send($user, new SendDatabaseNotification($data)); 
+        Notification::send($user, new SendDatabaseNotification($data));
         return $this->success('Database Notification is sent successfully!');
     }
- 
- 
- 
+
+
+
 }
