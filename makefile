@@ -46,6 +46,6 @@ dump:
 queue:
 	php artisan queue:work
 
-.PHONY: jwt
+.PHONY:jwt
 jwt:
-    php artisan jwt:secret
+	php artisan jwt:secret
