@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api\Blogs;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blogs\CategoryFilterRequest;
 use App\Http\Requests\Blogs\CategoryStoreRequest;
-use App\Http\Requests\Blogs\CategoryUpdateRequest; 
-use App\Models\Blogs\Category; 
+use App\Http\Requests\Blogs\CategoryUpdateRequest;
+use App\Models\Blogs\Category;
 use App\Services\Blogs\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,14 +14,16 @@ use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
+
     /**
-     * @var $categoryService 
+     * @var $categoryService
      */
     protected $categoryService;
 
     public function __construct(CategoryService $categoryService)
     {
         $this->categoryService = $categoryService;
+        $this->middleware('auth:api')->except(['index', 'show']);
     }
 
     /**
@@ -29,7 +31,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Get(
      *      path="/categories",
@@ -46,7 +48,7 @@ class CategoryController extends Controller
      *          @OA\Schema(
      *              type="string"
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -69,14 +71,14 @@ class CategoryController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function index(CategoryFilterRequest $request)
     {
         $this->authorize('category-list');
         return $this->categoryService->getAll($request);
-    } 
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -84,7 +86,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Post(
      *      path="/categories",
@@ -92,8 +94,8 @@ class CategoryController extends Controller
      *      tags={"Blogs"},
      *      summary="Store New Category",
      *      security={{"bearerAuth": {}}},
-     * 
-     *      @OA\RequestBody( 
+     *
+     *      @OA\RequestBody(
      *          required=true,
      *          description = "Store Category",
      *          @OA\JsonContent(
@@ -108,8 +110,8 @@ class CategoryController extends Controller
      *                  type="string"
      *              ),
      *          ),
-     *      ),     
-     *  
+     *      ),
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Success",
@@ -144,7 +146,7 @@ class CategoryController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -162,7 +164,7 @@ class CategoryController extends Controller
      *                          type="string",
      *                          example="The title field is required.",
      *                      )
-     *                  ), 
+     *                  ),
      *              )
      *          )
      *      ),
@@ -179,25 +181,25 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Get(
      *      path="/categories/{slug}",
      *      operationId="getCategoryById",
      *      tags={"Blogs"},
      *      summary="Return specific Category",
-	 * 		security={{"bearerAuth": {}}},
+     * 		security={{"bearerAuth": {}}},
      *
-	 * 		@OA\Parameter(
+     * 		@OA\Parameter(
      *          name="slug",
      *          description="Pass Category Slug",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
-     *              type="string" 
+     *              type="string"
      *          )
      *      ),
-	 *
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -232,7 +234,7 @@ class CategoryController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function show(Category $category)
@@ -248,7 +250,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Put(
      *     path="/categories/{id}",
@@ -256,7 +258,7 @@ class CategoryController extends Controller
      *      tags={"Blogs"},
      *      summary="Update existing Category",
      *      security={{"bearerAuth": {}}},
-     * 
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Category ID",
@@ -267,8 +269,8 @@ class CategoryController extends Controller
      *              format="int64"
      *          )
      *      ),
-     * 
-     *      @OA\RequestBody( 
+     *
+     *      @OA\RequestBody(
      *          required=true,
      *          description = "Update Category",
      *          @OA\JsonContent(
@@ -283,7 +285,7 @@ class CategoryController extends Controller
      *                  type="string"
      *              ),
      *          ),
-     *      ),     
+     *      ),
      *
      *      @OA\Response(
      *          response=200,
@@ -319,7 +321,7 @@ class CategoryController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -337,7 +339,7 @@ class CategoryController extends Controller
      *                          type="string",
      *                          example="The title field is required.",
      *                      )
-     *                  ), 
+     *                  ),
      *              )
      *          )
      *      ),
@@ -374,7 +376,7 @@ class CategoryController extends Controller
      *          )
      *      ),
      *      @OA\Response(
-     *          response=200, 
+     *          response=200,
      *          description="Successful operation",
      *          @OA\MediaType(
      *              mediaType="application/json",
@@ -407,7 +409,7 @@ class CategoryController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function destroy(Category $category)
@@ -415,6 +417,4 @@ class CategoryController extends Controller
         $this->authorize('category-delete');
         return $this->categoryService->destroy($category);
     }
- 
- 
 }

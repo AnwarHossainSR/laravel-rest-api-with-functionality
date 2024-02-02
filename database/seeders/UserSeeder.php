@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Blogs\Category;
 use App\Models\PermissionsAndRoles\Permission;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -34,5 +35,13 @@ class UserSeeder extends Seeder
             $user->roles()->attach([$userKey + 1]);
         }
 
+        $categories = ['Development', 'Updates', 'Email Marketing', 'Rate Optimization'];
+
+        foreach ($categories as $category) {
+            Category::create([
+                'title' => $category,
+                'slug' => strtolower($category),
+            ]);
+        }
     }
 }
