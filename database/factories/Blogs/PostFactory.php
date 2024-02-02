@@ -20,7 +20,7 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'slug' => $this->faker->slug,
-            'body' => $this->faker->paragraph,
+            'body' => $this->faker->realText(500),
             'imagePath' => $this->faker->imageUrl(),
             'thumbnailPath' => $this->faker->imageUrl(),
             'is_featured' => $this->faker->boolean,
