@@ -36,7 +36,6 @@ class PostController extends Controller
      *      tags={"Blogs"},
      *      summary="Get list of Post All",
      *      description="Returns list of Post All",
-     *      security={{"bearerAuth": {}}},
      *      @OA\Parameter(
      *          name="searchText",
      *          description="Search title",
@@ -73,7 +72,7 @@ class PostController extends Controller
      */
     public function index(PostFilterRequest $request)
     {
-        $this->authorize('post-list');
+        //$this->authorize('post-list');
         return $this->postService->getAll($request);
     }
 
@@ -201,7 +200,6 @@ class PostController extends Controller
      *      operationId="getPostById",
      *      tags={"Blogs"},
      *      summary="Return specific Post",
-     * 		security={{"bearerAuth": {}}},
      *
      * 		@OA\Parameter(
      *          name="slug",
@@ -252,7 +250,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $this->authorize('post-view');
+        //$this->authorize('post-view');
         return $this->postService->get($post);
     }
 

@@ -23,8 +23,9 @@ class PostFactory extends Factory
             'body' => $this->faker->paragraph,
             'imagePath' => $this->faker->imageUrl(),
             'thumbnailPath' => $this->faker->imageUrl(),
+            'is_featured' => $this->faker->boolean,
             'publishedAt' => $this->faker->dateTime,
-            'category_id' => 1,
+            'category_id' => $this->faker->numberBetween(1, 4),
             'user_id' => User::factory(),
         ];
     }

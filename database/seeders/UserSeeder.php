@@ -34,14 +34,5 @@ class UserSeeder extends Seeder
             $user = User::create($userRow);
             $user->roles()->attach([$userKey + 1]);
         }
-
-        $categories = ['Development', 'Updates', 'Email Marketing', 'Rate Optimization'];
-
-        foreach ($categories as $category) {
-            Category::create([
-                'title' => $category,
-                'slug' => strtolower($category),
-            ]);
-        }
     }
 }

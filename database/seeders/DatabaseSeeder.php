@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
+            CategorySeeder::class,
+            BlogSeeder::class,
         ]);
     }
 }

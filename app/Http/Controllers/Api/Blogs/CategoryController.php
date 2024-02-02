@@ -39,7 +39,6 @@ class CategoryController extends Controller
      *      tags={"Blogs"},
      *      summary="Get list of Category All",
      *      description="Returns list of Category All",
-     *      security={{"bearerAuth": {}}},
      *      @OA\Parameter(
      *          name="searchText",
      *          description="Search title",
@@ -76,7 +75,7 @@ class CategoryController extends Controller
      */
     public function index(CategoryFilterRequest $request)
     {
-        $this->authorize('category-list');
+        //$this->authorize('category-list');
         return $this->categoryService->getAll($request);
     }
 
@@ -188,7 +187,6 @@ class CategoryController extends Controller
      *      operationId="getCategoryById",
      *      tags={"Blogs"},
      *      summary="Return specific Category",
-     * 		security={{"bearerAuth": {}}},
      *
      * 		@OA\Parameter(
      *          name="slug",
@@ -239,7 +237,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $this->authorize('category-view');
+        //$this->authorize('category-view');
         return $this->categoryService->get($category);
     }
 
