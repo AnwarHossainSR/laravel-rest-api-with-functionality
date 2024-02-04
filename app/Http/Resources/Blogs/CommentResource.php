@@ -19,8 +19,9 @@ class CommentResource extends JsonResource
             'id' => $this->id,
             'parentId' => $this->parentId,
             'comment' => $this->comment,
+            'createdAt' => $this->created_at->addHours(6)->format('F d, Y \a\t g:i a'),
             'replies' => CommentResource::collection($this->replies),
-            'user' => new UserResource($this->user),
+            'author' => new UserResource($this->user),
         ];
     }
 }
