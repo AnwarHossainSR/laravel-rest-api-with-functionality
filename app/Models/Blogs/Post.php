@@ -12,7 +12,8 @@ use App\Models\BaseModel;
 
 class Post extends BaseModel
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = ['categoryId', 'slug', 'title', 'body', 'imagePath', 'thumbnailPath', 'publishedAt', 'user_id', 'created_by', 'updated_by', 'deleted_by', 'is_featured'];
 

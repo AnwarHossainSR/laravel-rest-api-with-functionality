@@ -7,7 +7,6 @@ use Illuminate\Support\Carbon;
 use App\Http\Resources\Users\UserResource;
 use App\Models\User;
 
-
 class PostResource extends JsonResource
 {
     /**

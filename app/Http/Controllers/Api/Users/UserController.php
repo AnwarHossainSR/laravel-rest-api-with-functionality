@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Api\Users;
 
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\UserFilterRequest;
 use App\Http\Requests\Users\UserStoreRequest;
 use App\Http\Requests\Users\UserUpdateRequest;
 use App\Models\User;
 use App\Services\Users\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response; 
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
     /**
-     * @var $userService 
+     * @var $userService
      */
     protected $userService;
 
@@ -28,7 +28,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     /**
      * @OA\Get(
      *      path="/users",
@@ -45,7 +45,7 @@ class UserController extends Controller
      *          @OA\Schema(
      *              type="string"
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -68,9 +68,9 @@ class UserController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      * )
-     */ 
+     */
     public function index(UserFilterRequest $request)
     {
         $this->authorize('user-list');
@@ -96,7 +96,7 @@ class UserController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation", 
+     *          description="Successful operation",
      *          @OA\MediaType(
      *              mediaType="application/json",
      *          )
@@ -139,7 +139,7 @@ class UserController extends Controller
      *      tags={"Users"},
      *      summary="Store New User",
      *      security={{"bearerAuth": {}}},
-     * 
+     *
      *      @OA\RequestBody(
      *          required=true,
      *          description="Store User",
@@ -177,14 +177,14 @@ class UserController extends Controller
      *                  description="roles in array",
      *                  type="array",
      *                  @OA\Items(
-     *                      title="list of Role Ids", 
+     *                      title="list of Role Ids",
      *                      type="integer",
      *                      example=1
      *                  )
      *              ),
      *          )
      *      ),
-     * 
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Successful operation",
@@ -195,18 +195,18 @@ class UserController extends Controller
      *                  property="result",
      *                  type="object",
      *                  @OA\Property(
-     *                      property="id", 
-     *                      type="integer",  
+     *                      property="id",
+     *                      type="integer",
      *                      example=1
      *                  ),
      *                  @OA\Property(
-     *                      property="name", 
-     *                      type="integer",  
+     *                      property="name",
+     *                      type="integer",
      *                      example="Mr. X"
      *                  ),
      *                  @OA\Property(
-     *                      property="email", 
-     *                      type="email",  
+     *                      property="email",
+     *                      type="email",
      *                      example="example@bjitgroup.com"
      *                  ),
      *                  @OA\Property(
@@ -220,8 +220,8 @@ class UserController extends Controller
      *                  )
      *              )
      *          )
-     *      ), 
-     * 
+     *      ),
+     *
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
@@ -241,7 +241,7 @@ class UserController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -292,9 +292,9 @@ class UserController extends Controller
      *      operationId="getUserById",
      *      tags={"Users"},
      *      summary="Return specific User",
-	 * 		security={{"bearerAuth": {}}},
+     * 		security={{"bearerAuth": {}}},
      *
-	 * 		@OA\Parameter(
+     * 		@OA\Parameter(
      *          name="id",
      *          description="User Id",
      *          required=true,
@@ -304,7 +304,7 @@ class UserController extends Controller
      *              format="int64"
      *          )
      *      ),
-	 *
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -339,7 +339,7 @@ class UserController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function show(User $user)
@@ -363,7 +363,7 @@ class UserController extends Controller
      *      tags={"Users"},
      *      summary="Update existing User",
      *      security={{"bearerAuth": {}}},
-     * 
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="User ID",
@@ -373,7 +373,7 @@ class UserController extends Controller
      *              type="integer",
      *              format="int64"
      *          )
-     *      ), 
+     *      ),
      *      @OA\RequestBody(
      *          required=true,
      *          description="Update User",
@@ -411,7 +411,7 @@ class UserController extends Controller
      *                  description="roles in array",
      *                  type="array",
      *                  @OA\Items(
-     *                      title="list of Role Ids", 
+     *                      title="list of Role Ids",
      *                      type="integer",
      *                      example=1
      *                  )
@@ -428,18 +428,18 @@ class UserController extends Controller
      *                  property="result",
      *                  type="object",
      *                  @OA\Property(
-     *                      property="id", 
-     *                      type="integer",  
+     *                      property="id",
+     *                      type="integer",
      *                      example=1
      *                  ),
      *                  @OA\Property(
-     *                      property="name", 
-     *                      type="integer",  
+     *                      property="name",
+     *                      type="integer",
      *                      example="Mr. X"
      *                  ),
      *                  @OA\Property(
-     *                      property="email", 
-     *                      type="email",  
+     *                      property="email",
+     *                      type="email",
      *                      example="example@bjitgroup.com"
      *                  ),
      *                  @OA\Property(
@@ -453,8 +453,8 @@ class UserController extends Controller
      *                  )
      *              )
      *          )
-     *      ), 
-     * 
+     *      ),
+     *
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
@@ -482,7 +482,7 @@ class UserController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -526,7 +526,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Delete(
      *      path="/users/{id}",
@@ -545,57 +545,6 @@ class UserController extends Controller
      *              format="int64"
      *          )
      *      ),
-     *      @OA\Response(
-     *          response=200, 
-     *          description="Successful operation",
-     *          @OA\MediaType(
-     *              mediaType="application/json",
-     *          )
-     *      ),
-     *      @OA\Response(
-     *          response=400,
-     *          description="Bad Request"
-     *      ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="success", type="string", example=false),
-     *              @OA\Property(property="message", type="string", example="Unauthenticated."),
-     *          )
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="success", type="string", example=false),
-     *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
-     *          )
-     *      ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="Not Found",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="success", type="string", example=false),
-     *              @OA\Property(property="message", type="string", example="ID is not found."),
-     *          )
-     *      ), 
-     * )
-     */
-    public function destroy(User $user)
-    {
-        $this->authorize('user-delete');
-        return $this->userService->destroy($user);
-    }
-
-    /**
-     * @OA\Get(
-     *      path="/whoami",
-     *      operationId="whoami",
-     *      tags={"Users"},
-     *      summary="Return authenticated User",
-	 * 		security={{"bearerAuth": {}}},
-	 *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -630,12 +579,64 @@ class UserController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
-    public function whoami(){
+    public function destroy(User $user)
+    {
+        $this->authorize('user-delete');
+        return $this->userService->destroy($user);
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/whoami",
+     *      operationId="whoami",
+     *      tags={"Users"},
+     *      summary="Return authenticated User",
+     * 		security={{"bearerAuth": {}}},
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="string", example=false),
+     *              @OA\Property(property="message", type="string", example="Unauthenticated."),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="string", example=false),
+     *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="string", example=false),
+     *              @OA\Property(property="message", type="string", example="ID is not found."),
+     *          )
+     *      ),
+     * )
+     */
+    public function whoami()
+    {
         return $this->userService->whoami();
     }
- 
- 
+
+
 }

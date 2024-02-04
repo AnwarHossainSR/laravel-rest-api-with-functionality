@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Gate;
 
 class CategoryController extends Controller
 {
-
     /**
      * @var $categoryService
      */
