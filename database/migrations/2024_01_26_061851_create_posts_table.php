@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->string('title');
+            $table->boolean('is_featured')->default(false);
             $table->string('slug')->unique();
             $table->text('body')->nullable();
             $table->string('image_path')->nullable();

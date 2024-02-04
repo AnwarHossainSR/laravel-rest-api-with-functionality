@@ -13,13 +13,14 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     /**
-     * @var $postService 
+     * @var $postService
      */
     protected $postService;
 
     public function __construct(PostService $postService)
     {
         $this->postService = $postService;
+        $this->middleware('auth:api')->except(['index', 'show']);
     }
 
     /**
@@ -27,7 +28,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Get(
      *      path="/posts",
@@ -35,7 +36,6 @@ class PostController extends Controller
      *      tags={"Blogs"},
      *      summary="Get list of Post All",
      *      description="Returns list of Post All",
-     *      security={{"bearerAuth": {}}},
      *      @OA\Parameter(
      *          name="searchText",
      *          description="Search title",
@@ -44,7 +44,7 @@ class PostController extends Controller
      *          @OA\Schema(
      *              type="string"
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -67,14 +67,14 @@ class PostController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
      *          )
-     *      ), 
+     *      ),
      * )
-     */ 
+     */
     public function index(PostFilterRequest $request)
     {
-        $this->authorize('post-list');
+        //$this->authorize('post-list');
         return $this->postService->getAll($request);
-    } 
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -82,7 +82,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Post(
      *      path="/posts",
@@ -90,13 +90,13 @@ class PostController extends Controller
      *      tags={"Blogs"},
      *      summary="Store New Post",
      *      security={{"bearerAuth": {}}},
-     * 
-     *      @OA\RequestBody( 
+     *
+     *      @OA\RequestBody(
      *          required=true,
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
      *              @OA\Schema(
-     *                  required={"categoryId","title"}, 
+     *                  required={"categoryId","title"},
      *                  @OA\Property(
      *                      property="image",
      *                      type="file",
@@ -119,11 +119,11 @@ class PostController extends Controller
      *                      description="Post Body",
      *                      example="This is the test body 101",
      *                      type="string"
-     *                  ) 
+     *                  )
      *              )
      *          )
-     *      ),     
-     *  
+     *      ),
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Success",
@@ -158,7 +158,7 @@ class PostController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -176,14 +176,14 @@ class PostController extends Controller
      *                          type="string",
      *                          example="The title field is required.",
      *                      )
-     *                  ), 
+     *                  ),
      *              )
      *          )
      *      ),
      * )
      */
     public function store(PostStoreRequest $request)
-    { 
+    {
         return $this->postService->store($request);
     }
 
@@ -193,25 +193,24 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Get(
      *      path="/posts/{slug}",
      *      operationId="getPostById",
      *      tags={"Blogs"},
      *      summary="Return specific Post",
-	 * 		security={{"bearerAuth": {}}},
      *
-	 * 		@OA\Parameter(
+     * 		@OA\Parameter(
      *          name="slug",
      *          description="Pass Post Slug",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
-     *              type="string" 
+     *              type="string"
      *          )
      *      ),
-	 *
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -246,12 +245,12 @@ class PostController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function show(Post $post)
     {
-        $this->authorize('post-view');
+        //$this->authorize('post-view');
         return $this->postService->get($post);
     }
 
@@ -262,7 +261,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * @OA\Post(
      *      path="/posts/{id}",
@@ -270,7 +269,7 @@ class PostController extends Controller
      *      tags={"Blogs"},
      *      summary="Update Post",
      *      security={{"bearerAuth": {}}},
-     * 
+     *
      *      @OA\Parameter(
      *          name="id",
      *          description="Post Id",
@@ -281,13 +280,13 @@ class PostController extends Controller
      *              format="int64"
      *          )
      *      ),
-     * 
-     *      @OA\RequestBody( 
+     *
+     *      @OA\RequestBody(
      *          required=true,
      *          @OA\MediaType(
      *              mediaType="multipart/form-data",
      *              @OA\Schema(
-     *                  required={"_method"}, 
+     *                  required={"_method"},
      *                  @OA\Property(
      *                      property="_method",
      *                      description="Method will always PUT",
@@ -316,11 +315,11 @@ class PostController extends Controller
      *                      description="Post Body",
      *                      example="This is the test body 101",
      *                      type="string"
-     *                  ) 
+     *                  )
      *              )
      *          )
-     *      ),     
-     *  
+     *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Success",
@@ -355,7 +354,7 @@ class PostController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      *      @OA\Response(
      *          response=422,
      *          description="Unprocessable Entity(Validation errors)",
@@ -373,12 +372,12 @@ class PostController extends Controller
      *                          type="string",
      *                          example="The title field is required.",
      *                      )
-     *                  ), 
+     *                  ),
      *              )
      *          )
      *      ),
      * )
-     */    
+     */
     public function update(PostUpdateRequest $request, Post $post)
     {
         return $this->postService->update($request, $post);
@@ -390,7 +389,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-  
+
     /**
      * @OA\Delete(
      *      path="/posts/{id}",
@@ -410,7 +409,7 @@ class PostController extends Controller
      *          )
      *      ),
      *      @OA\Response(
-     *          response=200, 
+     *          response=200,
      *          description="Successful operation",
      *          @OA\MediaType(
      *              mediaType="application/json",
@@ -443,14 +442,12 @@ class PostController extends Controller
      *              @OA\Property(property="success", type="string", example=false),
      *              @OA\Property(property="message", type="string", example="ID is not found."),
      *          )
-     *      ), 
+     *      ),
      * )
      */
     public function destroy(Post $post)
-    { 
+    {
         $this->authorize('post-delete');
         return $this->postService->destroy($post);
     }
-
-
 }

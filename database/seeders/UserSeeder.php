@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Blogs\Category;
 use App\Models\PermissionsAndRoles\Permission;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -33,6 +34,5 @@ class UserSeeder extends Seeder
             $user = User::create($userRow);
             $user->roles()->attach([$userKey + 1]);
         }
-
     }
 }

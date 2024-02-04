@@ -14,7 +14,7 @@ class Post extends BaseModel
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['categoryId', 'slug', 'title', 'body', 'imagePath', 'thumbnailPath', 'publishedAt', 'user_id', 'created_by', 'updated_by', 'deleted_by'];
+    protected $fillable = ['categoryId', 'slug', 'title', 'body', 'imagePath', 'thumbnailPath', 'publishedAt', 'user_id', 'created_by', 'updated_by', 'deleted_by', 'is_featured'];
 
     /**
      * The "booted" method of the model.

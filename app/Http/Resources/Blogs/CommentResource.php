@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Blogs;
 
+use App\Http\Resources\Users\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CommentResource extends JsonResource
@@ -18,7 +19,8 @@ class CommentResource extends JsonResource
             'id' => $this->id,
             'parentId' => $this->parentId,
             'comment' => $this->comment,
-            'replies' => CommentResource::collection($this->replies)
+            'replies' => CommentResource::collection($this->replies),
+            'user' => new UserResource($this->user),
         ];
     }
 }
