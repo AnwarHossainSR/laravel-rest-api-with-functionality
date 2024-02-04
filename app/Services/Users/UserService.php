@@ -98,4 +98,10 @@ class UserService
         }
         return $this->failure(__('messages.crud.deleteFailed'));
     }
+
+    public function whoami()
+    {
+        $user = auth()->user();
+        return $this->success('', new UserResource($user));
+    }
 }

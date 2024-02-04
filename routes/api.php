@@ -44,5 +44,7 @@ Route::prefix('v1')->group(function () {
         Route::resource('users', \App\Http\Controllers\Api\Users\UserController::class);
         Route::post('posts/{post:slug}/comments', [\App\Http\Controllers\Api\Blogs\CommentController::class, 'store']);
         Route::post('posts/{post:slug}/comments/reply', [\App\Http\Controllers\Api\Blogs\CommentController::class, 'storeReply']);
+
+        Route::get('whoami', [\App\Http\Controllers\Api\Users\UserController::class, 'whoami']);
     });
 });

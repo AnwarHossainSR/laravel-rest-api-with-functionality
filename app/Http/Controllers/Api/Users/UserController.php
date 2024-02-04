@@ -587,6 +587,55 @@ class UserController extends Controller
         $this->authorize('user-delete');
         return $this->userService->destroy($user);
     }
+
+    /**
+     * @OA\Get(
+     *      path="/whoami",
+     *      operationId="whoami",
+     *      tags={"Users"},
+     *      summary="Return authenticated User",
+	 * 		security={{"bearerAuth": {}}},
+	 *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="string", example=false),
+     *              @OA\Property(property="message", type="string", example="Unauthenticated."),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="string", example=false),
+     *              @OA\Property(property="message", type="string", example="This action is unauthorized."),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="string", example=false),
+     *              @OA\Property(property="message", type="string", example="ID is not found."),
+     *          )
+     *      ), 
+     * )
+     */
+    public function whoami(){
+        return $this->userService->whoami();
+    }
  
  
 }
